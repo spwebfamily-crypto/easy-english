@@ -409,6 +409,10 @@ function SplashScreen({ onDone }) {
           src="/assets/LOGO-EASY-ENGLISH-NOW.png"
           alt="Easy English Now"
           className="splash-logo"
+          width="280"
+          height="170"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="splash-text">
           <strong>Easy English Now</strong>
@@ -443,18 +447,35 @@ function App() {
   }, [splashDone]);
 
   useEffect(() => {
-    const onScroll = () => {
+    let frameId = 0;
+
+    const updateFromScroll = () => {
+      frameId = 0;
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(progress);
-      setShowStickyCta(scrollTop > 520);
+      const shouldShowStickyCta = scrollTop > 520;
+
+      setScrollProgress((current) =>
+        Math.abs(current - progress) > 0.1 ? progress : current,
+      );
+      setShowStickyCta((current) =>
+        current !== shouldShowStickyCta ? shouldShowStickyCta : current,
+      );
     };
 
-    onScroll();
+    const onScroll = () => {
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(updateFromScroll);
+    };
+
+    updateFromScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   useEffect(() => {
@@ -532,25 +553,7 @@ function TopBar({ onCtaClick }) {
 }
 
 function Hero({ currentWord, onCtaClick }) {
-  const prefersReducedMotion = usePrefersReducedMotion();
   const studentCount = useCountUp(2500);
-  const [parallaxOffset, setParallaxOffset] = useState(0);
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      setParallaxOffset(0);
-      return undefined;
-    }
-
-    const onScroll = () => {
-      setParallaxOffset(Math.min(window.scrollY, 360));
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [prefersReducedMotion]);
 
   const heroStats = [
     {
@@ -683,63 +686,6 @@ function Hero({ currentWord, onCtaClick }) {
             </div>
           </Reveal>
         </div>
-
-        <Reveal delay={200}>
-          <div className="hero-stage">
-            <div className="hero-stage-glow" />
-            <div className="hero-stage-shell">
-              <img
-                src="/assets/SEO-EASY-ENGLISH-NOW.jpg"
-                alt="Capa visual Easy English Now com Teacher Kilane"
-                className="hero-stage-cover"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
-
-            <div
-              className="hero-floating-shell hero-floating-shell-top"
-              style={{ transform: `translate3d(0, ${parallaxOffset * -0.12}px, 0)` }}
-            >
-              <div className="hero-floating-badge top-badge">
-                <img
-                  src="/assets/LOGO-EASY-ENGLISH-NOW.png"
-                  alt="Logo Easy English Now"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-
-            <div
-              className="hero-floating-shell hero-floating-shell-bottom"
-              style={{ transform: `translate3d(0, ${parallaxOffset * 0.08}px, 0)` }}
-            >
-              <div className="hero-floating-badge bottom-badge">
-                <div className="badge-icon-wrap">
-                  <Star fill="currentColor" size={16} />
-                </div>
-                <div className="badge-text-wrap">
-                  <strong>Teacher Kilane</strong>
-                  <span>Especialista</span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="hero-floating-shell hero-floating-shell-seal"
-              style={{ transform: `translate3d(0, ${parallaxOffset * -0.06}px, 0)` }}
-            >
-              <img
-                src="/assets/Group-40.png"
-                alt="Selo visual Easy English Now"
-                className="hero-floating-seal"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
@@ -860,6 +806,8 @@ function ProofSection({ onCtaClick }) {
               <img
                 src="/assets/foto-4-dobra.png"
                 alt="Teacher Kilane em destaque"
+                width="960"
+                height="1183"
                 loading="lazy"
                 decoding="async"
               />
@@ -868,6 +816,8 @@ function ProofSection({ onCtaClick }) {
               <img
                 src="/assets/Group-4.png"
                 alt="Selo circular Easy English Now"
+                width="206"
+                height="206"
                 loading="lazy"
                 decoding="async"
               />
@@ -876,6 +826,8 @@ function ProofSection({ onCtaClick }) {
               <img
                 src="/assets/FOTO-03a-DOBRA.png"
                 alt="Registro de aulas online"
+                width="691"
+                height="875"
                 loading="lazy"
                 decoding="async"
               />
@@ -1056,6 +1008,8 @@ function OfferSection({ onCtaClick }) {
                 className="offer-showcase-cover"
                 src="/assets/SEO-EASY-ENGLISH-NOW.jpg"
                 alt="Capa visual do produto Easy English Now"
+                width="2560"
+                height="1000"
                 loading="lazy"
                 decoding="async"
               />
@@ -1063,6 +1017,8 @@ function OfferSection({ onCtaClick }) {
                 className="offer-showcase-seal"
                 src="/assets/Group-40.png"
                 alt="Selo visual Easy English Now"
+                width="361"
+                height="361"
                 loading="lazy"
                 decoding="async"
               />
@@ -1226,6 +1182,10 @@ function Footer() {
           <img
             src="/assets/LOGO-EASY-ENGLISH-NOW.png"
             alt="Logo Easy English Now"
+            width="280"
+            height="170"
+            loading="lazy"
+            decoding="async"
           />
           <p>
             Easy English Now: uma forma mais leve, visual e direta de voltar a
@@ -1345,11 +1305,26 @@ function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setVisible(window.scrollY > 800);
+    let frameId = 0;
+
+    const updateVisibility = () => {
+      frameId = 0;
+      const shouldBeVisible = window.scrollY > 800;
+      setVisible((current) => (current !== shouldBeVisible ? shouldBeVisible : current));
     };
+
+    const onScroll = () => {
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(updateVisibility);
+    };
+
+    updateVisibility();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   return (
