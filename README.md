@@ -51,7 +51,7 @@
 - Grid responsivo de produtos estilo e-commerce
 - Sistema de busca em tempo real
 - Filtros por categoria (Básico, Intermediário, Avançado)
-- Cards com imagem, descrição, preço e botão de compra
+- Cards com imagem, descrição, preço e CTA configurável
 - Navegação fluida sem reload de página
 
 ---
@@ -73,8 +73,8 @@ easy-english/
 │   └── assets/              # Imagens, logos e recursos estáticos
 ├── src/
 │   ├── pages/
-│   │   └── Materials.jsx    # Página da biblioteca de materiais
-│   ├── App.jsx              # Componente principal e landing page
+│   │   └── Materials.tsx    # Página da biblioteca de materiais
+│   ├── App.tsx              # Componente principal e landing page
 │   ├── main.jsx             # Entry point do React
 │   └── styles.css           # Estilos globais e componentes
 ├── docs/
@@ -131,7 +131,7 @@ http://localhost:5173
 ### Navegação
 
 - **Home** - Landing page principal com todas as seções
-- **Materiais** - Clique no botão "MATERIAS" no topo para acessar a biblioteca
+- **Materiais** - Clique no botão "materiais" no topo para acessar a biblioteca
 - **Voltar** - Use o botão "Voltar" na página de materiais para retornar à home
 
 ---
@@ -140,7 +140,7 @@ http://localhost:5173
 
 ### Editar Conteúdo da Landing Page
 
-Abra `src/App.jsx` e edite:
+Abra `src/App.tsx` e edite:
 
 ```javascript
 // Links externos
@@ -161,19 +161,23 @@ const faqItems = [
 
 ### Adicionar Materiais
 
-Abra `src/pages/Materials.jsx` e edite o array:
+Abra `src/pages/Materials.tsx` e edite a função `buildMaterialsData`:
 
 ```javascript
-const materialsData = [
-  {
-    id: 1,
-    title: "Nome do Material",
-    description: "Descrição do material",
-    price: "R$ 97,00",
-    image: "/assets/imagem.png",
-    category: "basico" // basico, intermediario ou avancado
-  }
-];
+function buildMaterialsData(contactLink) {
+  return [
+    {
+      id: 1,
+      title: "Nome do Material",
+      description: "Descrição do material",
+      price: "R$ 97,00",
+      image: "/assets/imagem.png",
+      category: "basico", // basico, intermediario ou avancado
+      href: contactLink,
+      ctaLabel: "Pedir no Instagram"
+    }
+  ];
+}
 ```
 
 ### Personalizar Cores
@@ -192,7 +196,7 @@ Abra `src/styles.css` e edite as variáveis CSS:
 ### Trocar Imagens
 
 1. Adicione suas imagens em `public/assets/`
-2. Atualize os caminhos em `src/App.jsx` ou `src/pages/Materials.jsx`
+2. Atualize os caminhos em `src/App.tsx` ou `src/pages/Materials.tsx`
 
 ---
 
