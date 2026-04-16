@@ -1,49 +1,77 @@
+<p align="center">
+  <img src="./docs/readme/hero-banner.svg" alt="Easy English Now README banner" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-0A2F78?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" />
+  <img src="https://img.shields.io/badge/Vite-6-1676D2?style=for-the-badge&logo=vite&logoColor=FFD35F" alt="Vite 6" />
+  <img src="https://img.shields.io/badge/Status-Pronto%20para%20campanha-F04B36?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Layout-Responsivo-0E8F5B?style=for-the-badge" alt="Responsivo" />
+</p>
+
+<p align="center">
+  <a href="#visao-geral">Visao geral</a> |
+  <a href="#preview">Preview</a> |
+  <a href="#destaques">Destaques</a> |
+  <a href="#stack">Stack</a> |
+  <a href="#como-rodar">Como rodar</a> |
+  <a href="#publicacao">Publicacao</a>
+</p>
+
 # Easy English Now
 
-Landing page premium para promocao do produto digital `Easy English Now`, desenvolvida com `React + Vite` e pensada para conversao direta via Hotmart.
+Landing page premium para promover o produto digital `Easy English Now`, desenvolvida com `React + Vite` e desenhada para conversao direta via Hotmart.
 
-![Preview da landing](./public/assets/SEO-EASY-ENGLISH-NOW.jpg)
+O projeto entrega uma pagina comercial de alto impacto com narrativa objetiva, prova social, oferta clara e CTA direto para checkout externo.
 
-## Sobre o Projeto
+## Visao geral
 
-Este projeto e uma single-page landing page com narrativa comercial forte, visual marcante e varios elementos de conversao para apresentar a oferta do `Easy English Now`.
+- Hero forte com headline dinamica e CTA principal
+- Splash screen com identidade da marca
+- Blocos de dor, processo, prova social e oferta
+- FAQ em acordeao para reducao de objecoes
+- CTA fixo para mobile e navegacao pensada para conversao
+- SEO basico, Open Graph e Twitter Card configurados
 
-O foco da pagina e:
+> Projeto estatico, sem backend e sem CMS. Toda a edicao principal acontece no front-end.
 
-- capturar atencao logo no primeiro bloco
-- reduzir objecoes com prova social e FAQs
-- reforcar autoridade visual da marca
-- conduzir o usuario para o checkout externo
+## Preview
 
-## O Que Esta Implementado
+| Capa social | Hero desktop |
+| --- | --- |
+| ![Capa do projeto](./public/assets/SEO-EASY-ENGLISH-NOW.jpg) | ![Hero desktop](./public/assets/1a-DOBRA-EASY-ENGLISH-NOW.jpg) |
 
-### Experiencia de interface
+| Hero mobile | Bloco de autoridade |
+| --- | --- |
+| <img src="./public/assets/1a-DOBRA-MOBILE-EASY-ENGLISH-NOW.jpg" alt="Hero mobile" width="320" /> | ![Teacher Kilane](./public/assets/FOTO-03a-DOBRA.png) |
 
-- splash screen de entrada com identidade da marca
-- hero com headline dinamica e CTA principal
-- efeitos de reveal no scroll
-- barra de progresso de leitura
-- botao flutuante de WhatsApp
-- CTA fixo no rodape em scroll
-- toast visual ao abrir checkout
+## Destaques
 
-### Conversao e copy
+| Area | O que entrega |
+| --- | --- |
+| Conversao | CTA principal no hero, CTA fixo no mobile e oferta com gatilhos de seguranca |
+| Autoridade | Imagens da Teacher Kilane, prova social e promessa clara de transformacao |
+| Experiencia | Layout responsivo, identidade visual forte e leitura guiada por secoes |
+| Conteudo | Dores do publico, explicacao do metodo, beneficios, FAQ e reforco de oferta |
+| SEO | `title`, `description`, `keywords`, Open Graph, Twitter Card e favicon |
 
-- secao de dores e beneficios
-- prova visual com imagens do produto e da marca
-- depoimentos com prova social
-- metricas animadas
-- card de oferta com preco ancorado
-- contador regressivo de urgencia
-- FAQ com acordeao
+## Mapa rapido
 
-### Qualidade tecnica
+<p align="center">
+  <img src="./docs/readme/project-map.svg" alt="Mapa rapido do projeto" width="100%" />
+</p>
 
-- layout responsivo para desktop, tablet e mobile
-- suporte a `prefers-reduced-motion`
-- assets organizados em `public/assets`
-- metadados SEO, Open Graph e Twitter Card em `index.html`
-- build estatica pronta para deploy
+## Estrutura da landing
+
+1. Splash de entrada com logo da marca.
+2. Hero com headline dinamica, CTA e sinais de confianca.
+3. Bloco de dor para conectar com o publico.
+4. Explicacao simples do metodo em 3 passos.
+5. Prova social com numeros e reforco de garantia.
+6. Apresentacao da Teacher Kilane.
+7. Lista de entregaveis da oferta.
+8. Oferta final com CTA para Hotmart.
+9. FAQ para reduzir objecoes antes da compra.
 
 ## Stack
 
@@ -51,25 +79,28 @@ O foco da pagina e:
 - `Vite 6`
 - `lucide-react`
 - CSS puro em `src/styles.css`
+- Assets estaticos em `public/assets`
 
-## Estrutura do Projeto
+## Estrutura do projeto
 
 ```text
 .
+|-- docs/
+|   `-- readme/                   # assets visuais usados neste README
 |-- public/
-|   `-- assets/                   # imagens, capas, logo, selos e favicon
+|   `-- assets/                   # imagens da landing, logo, favicon e capa SEO
 |-- src/
-|   |-- App.jsx                   # estrutura da landing, dados e comportamento
-|   |-- main.jsx                  # ponto de entrada do React
-|   `-- styles.css                # identidade visual, layout, motion e responsividade
-|-- dist/                         # build final para publicacao
-|-- _reference/                   # referencias visuais originais do projeto
-|-- index.html                    # meta tags, SEO e bootstrap do app
+|   |-- App.jsx                   # estrutura da pagina, copy e dados principais
+|   |-- main.jsx                  # bootstrap do React
+|   `-- styles.css                # identidade visual, layout e responsividade
+|-- dist/                         # build final para deploy
+|-- _reference/                   # referencias visuais originais
+|-- index.html                    # SEO, metadados e preload de imagens
 |-- package.json
 `-- vite.config.js
 ```
 
-## Como Rodar Localmente
+## Como rodar
 
 ### Requisitos
 
@@ -82,93 +113,57 @@ O foco da pagina e:
 npm install
 ```
 
-### Ambiente de desenvolvimento
+### Desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-### Gerar build de producao
+### Build de producao
 
 ```bash
 npm run build
 ```
 
-### Visualizar build localmente
+### Preview local da build
 
 ```bash
 npm run preview
 ```
 
-## Scripts Disponiveis
+## Scripts
 
-| Script | Funcao |
+| Script | Uso |
 | --- | --- |
-| `npm run dev` | inicia o servidor local com hot reload |
-| `npm run build` | gera a versao de producao em `dist/` |
-| `npm run preview` | sobe uma visualizacao local da build final |
+| `npm run dev` | inicia o ambiente local com hot reload |
+| `npm run build` | gera a build final em `dist/` |
+| `npm run preview` | sobe uma visualizacao local da build pronta |
 
-## Onde Editar Cada Parte
+## Onde editar cada parte
 
-### Conteudo principal
+| Arquivo | Responsabilidade |
+| --- | --- |
+| `src/App.jsx` | copy, links, estrutura das secoes, FAQs e chamadas principais |
+| `src/styles.css` | cores, espacamento, tipografia, grids, animacoes e responsividade |
+| `public/assets/` | imagens da hero, fotos da marca, logo, favicon e capa de compartilhamento |
+| `index.html` | `title`, `description`, `keywords`, Open Graph, Twitter Card e preloads |
 
-O arquivo `src/App.jsx` concentra quase toda a customizacao da landing:
+## Pontos de customizacao rapida
 
-- `hotmartLink`: link principal de checkout
-- `rotatingWords`: palavra rotativa do hero
-- `testimonials`: depoimentos
-- `socialProofMetrics`: numeros de prova social
-- `offerBonuses`: bonuses da oferta
-- `faqItems`: perguntas frequentes
-- `footerLinks`: links sociais do rodape
-
-### Identidade visual
-
-O arquivo `src/styles.css` concentra:
-
-- paleta de cores
-- tipografia
-- espacamentos
-- animacoes
-- layout responsivo
-- estilos dos componentes da landing
-
-### SEO e compartilhamento
-
-O arquivo `index.html` concentra:
-
-- `title`
-- `description`
-- `keywords`
-- metadados Open Graph
-- metadados Twitter Card
-- favicon
-
-### Imagens e assets
-
-Todos os arquivos visuais usados pela pagina ficam em:
-
-```text
-public/assets/
-```
-
-## Fluxo de Conversao da Pagina
-
-1. O usuario entra e recebe impacto visual inicial com splash + hero.
-2. A pagina apresenta dor, clareza de proposta e beneficios.
-3. A prova social reforca confianca com numeros e depoimentos.
-4. A secao de oferta concentra preco, bonus, seguranca e urgencia.
-5. O CTA leva para checkout externo na Hotmart.
+- Atualize `hotmartLink` e `instagramLink` em `src/App.jsx`
+- Revise os arrays de `heroWords`, `painPoints`, `processSteps`, `proofCards` e `faqItems`
+- Troque as imagens em `public/assets` mantendo os nomes ou atualizando os caminhos no componente
+- Ajuste a paleta e os tokens globais em `:root` dentro de `src/styles.css`
 
 ## Publicacao
 
-Como o projeto e estatico, a publicacao e simples. Depois do build:
+Depois de gerar a build:
 
 ```bash
 npm run build
 ```
 
-publique o conteudo da pasta `dist/` em qualquer plataforma de hosting estatico, como:
+publique a pasta `dist/` em qualquer hosting estatico:
 
 - Vercel
 - Netlify
@@ -176,33 +171,25 @@ publique o conteudo da pasta `dist/` em qualquer plataforma de hosting estatico,
 - GitHub Pages
 - hospedagem estatica tradicional
 
-## Checklist Antes de Publicar
+## Checklist antes de publicar
 
-- revisar `hotmartLink`
-- trocar o numero do WhatsApp por um numero real
-- revisar links de Instagram e YouTube
-- validar copy, preco e bonuses
-- revisar depoimentos e metricas
-- revisar metadados SEO em `index.html`
-- confirmar se todos os assets finais estao em `public/assets`
+- confirmar o link real do checkout
+- revisar Instagram e demais links externos
+- validar copy, preco, garantia e numeros da oferta
+- revisar imagens finais em `public/assets`
+- validar SEO e compartilhamento em `index.html`
+- testar a pagina em mobile e desktop
 
-## Limitacoes Atuais
+## Observacoes
 
-- nao existe backend
-- nao existe CMS para editar conteudo sem alterar codigo
-- os textos estao hardcoded em `src/App.jsx`
-- o countdown usa o fim do dia local do navegador
-- o botao de WhatsApp usa numero placeholder
+- Nao ha backend ou painel administrativo
+- O conteudo esta hardcoded em `src/App.jsx`
+- A base atual e ideal para campanhas rapidas e ajustes visuais com baixo atrito
 
-## Proximos Passos Sugeridos
+## Proximos passos recomendados
 
-- integrar analytics
-- adicionar evento de conversao nos CTAs
-- conectar pixel do Meta e Google Ads
+- adicionar analytics e eventos de conversao
+- integrar pixel do Meta e Google Ads
 - externalizar conteudo para JSON ou CMS
-- adicionar testes basicos de renderizacao
-- criar variante A/B da headline e da oferta
-
-## Resumo
-
-O projeto entrega uma landing page visualmente forte, pronta para campanhas, facil de editar e simples de publicar. A base esta organizada para ajustes rapidos de copy, oferta, links e identidade visual sem precisar reestruturar a aplicacao.
+- criar testes basicos de renderizacao
+- preparar variantes A/B de headline e oferta

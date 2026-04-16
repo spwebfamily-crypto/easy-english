@@ -1,0 +1,91 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="56" x2="1146" y2="672" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A2F78"/>
+      <stop offset="0.55" stop-color="#0F5AC4"/>
+      <stop offset="1" stop-color="#F04B36"/>
+    </linearGradient>
+    <linearGradient id="card" x1="772" y1="148" x2="1128" y2="514" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+    <filter id="shadow" x="702" y="108" width="486" height="458" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0117647 0 0 0 0 0.0941176 0 0 0 0 0.243137 0 0 0 0.26 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" rx="36" fill="#07183D"/>
+  <rect width="1280" height="720" rx="36" fill="url(#bg)"/>
+  <circle cx="164" cy="136" r="180" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="1154" cy="582" r="238" fill="#FFC94A" fill-opacity="0.12"/>
+  <circle cx="1048" cy="96" r="106" fill="#FFFFFF" fill-opacity="0.1"/>
+  <path d="M0 592C168 506 352 492 514 522C676 552 836 636 1022 634C1115 633 1204 610 1280 572V720H0V592Z" fill="#FFFFFF" fill-opacity="0.08"/>
+
+  <g opacity="0.9">
+    <rect x="86" y="108" width="162" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.16"/>
+    <text x="167" y="133" fill="#FFF7D7" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="middle">React + Vite</text>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="264" y="108" width="184" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.16"/>
+    <text x="356" y="133" fill="#FFF7D7" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="middle">Landing de conversao</text>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="464" y="108" width="168" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.16"/>
+    <text x="548" y="133" fill="#FFF7D7" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="middle">Checkout Hotmart</text>
+  </g>
+
+  <text x="86" y="258" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">Easy English Now</text>
+  <text x="86" y="320" fill="#D8E7FF" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="500">Landing page premium para venda direta do produto digital</text>
+  <text x="86" y="360" fill="#D8E7FF" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="500">com foco em autoridade visual, prova social e CTA para Hotmart.</text>
+
+  <g opacity="0.92">
+    <rect x="86" y="430" width="214" height="90" rx="24" fill="#FFFFFF" fill-opacity="0.14"/>
+    <text x="112" y="469" fill="#FFD35F" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">+1.000 alunos</text>
+    <text x="112" y="500" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="500">Prova social destacada</text>
+  </g>
+
+  <g opacity="0.92">
+    <rect x="320" y="430" width="214" height="90" rx="24" fill="#FFFFFF" fill-opacity="0.14"/>
+    <text x="346" y="469" fill="#FFD35F" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">7 dias de garantia</text>
+    <text x="346" y="500" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="500">Compra sem risco</text>
+  </g>
+
+  <g opacity="0.92">
+    <rect x="554" y="430" width="214" height="90" rx="24" fill="#FFFFFF" fill-opacity="0.14"/>
+    <text x="580" y="469" fill="#FFD35F" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Acesso vitalicio</text>
+    <text x="580" y="500" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="500">Oferta clara e direta</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="750" y="130" width="390" height="390" rx="34" fill="url(#card)"/>
+    <rect x="750" y="130" width="390" height="390" rx="34" stroke="#FFFFFF" stroke-opacity="0.24"/>
+    <rect x="786" y="170" width="318" height="182" rx="24" fill="#FFFFFF" fill-opacity="0.9"/>
+    <rect x="786" y="170" width="318" height="182" rx="24" fill="#F6FAFF"/>
+    <rect x="810" y="194" width="128" height="22" rx="11" fill="#0F5AC4" fill-opacity="0.16"/>
+    <text x="874" y="210" fill="#0A2F78" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Hero Section</text>
+    <rect x="810" y="236" width="270" height="16" rx="8" fill="#0A2F78" fill-opacity="0.22"/>
+    <rect x="810" y="264" width="224" height="16" rx="8" fill="#0A2F78" fill-opacity="0.16"/>
+    <rect x="810" y="300" width="132" height="42" rx="21" fill="#F04B36"/>
+    <text x="876" y="326" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" text-anchor="middle">CTA principal</text>
+
+    <rect x="786" y="374" width="150" height="112" rx="24" fill="#FFFFFF" fill-opacity="0.78"/>
+    <rect x="752" y="402" width="76" height="28" rx="14" fill="#FFD35F"/>
+    <text x="790" y="421" fill="#0A2F78" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Social proof</text>
+    <text x="814" y="444" fill="#0A2F78" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">97%</text>
+    <text x="814" y="468" fill="#334B7A" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600">satisfacao</text>
+
+    <rect x="954" y="374" width="150" height="112" rx="24" fill="#FFFFFF" fill-opacity="0.78"/>
+    <rect x="938" y="358" width="120" height="28" rx="14" fill="#0F5AC4"/>
+    <text x="998" y="377" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Checkout seguro</text>
+    <text x="982" y="444" fill="#0A2F78" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">7 dias</text>
+    <text x="982" y="468" fill="#334B7A" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600">garantia total</text>
+  </g>
+</svg>

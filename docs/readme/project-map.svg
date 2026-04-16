@@ -1,0 +1,40 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="760" rx="32" fill="#F4F8FF"/>
+  <rect x="60" y="60" width="1160" height="640" rx="28" fill="white"/>
+  <text x="100" y="128" fill="#0A2F78" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Mapa rapido do projeto</text>
+  <text x="100" y="164" fill="#48607F" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">Onde editar conteudo, identidade visual, SEO e assets da landing.</text>
+
+  <rect x="100" y="220" width="240" height="170" rx="26" fill="#0A2F78"/>
+  <text x="128" y="268" fill="white" font-family="Courier New, monospace" font-size="28" font-weight="700">src/App.jsx</text>
+  <text x="128" y="310" fill="#DCE9FF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">Copy, CTAs, FAQs,</text>
+  <text x="128" y="338" fill="#DCE9FF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">blocos da pagina e</text>
+  <text x="128" y="366" fill="#DCE9FF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">dados principais.</text>
+
+  <rect x="380" y="220" width="240" height="170" rx="26" fill="#0F5AC4"/>
+  <text x="408" y="268" fill="white" font-family="Courier New, monospace" font-size="28" font-weight="700">src/styles.css</text>
+  <text x="408" y="310" fill="#EAF2FF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">Paleta, layout,</text>
+  <text x="408" y="338" fill="#EAF2FF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">animacoes, grids e</text>
+  <text x="408" y="366" fill="#EAF2FF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">responsividade.</text>
+
+  <rect x="660" y="220" width="240" height="170" rx="26" fill="#F04B36"/>
+  <text x="688" y="268" fill="white" font-family="Courier New, monospace" font-size="26" font-weight="700">public/assets</text>
+  <text x="688" y="310" fill="#FFE6E2" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">Imagens da hero,</text>
+  <text x="688" y="338" fill="#FFE6E2" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">logo, fotos da marca</text>
+  <text x="688" y="366" fill="#FFE6E2" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500">e capa SEO.</text>
+
+  <rect x="940" y="220" width="240" height="170" rx="26" fill="#FFD35F"/>
+  <text x="968" y="268" fill="#0A2F78" font-family="Courier New, monospace" font-size="28" font-weight="700">index.html</text>
+  <text x="968" y="310" fill="#5A4A16" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600">Title, description,</text>
+  <text x="968" y="338" fill="#5A4A16" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600">Open Graph, Twitter</text>
+  <text x="968" y="366" fill="#5A4A16" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600">e preload de imagens.</text>
+
+  <path d="M220 434V500H640" stroke="#C1D0EA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M500 434V470" stroke="#C1D0EA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M780 434V500H640" stroke="#C1D0EA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1060 434V470" stroke="#C1D0EA" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="456" y="500" width="368" height="148" rx="30" fill="#EEF4FF" stroke="#D2DEEF" stroke-width="2"/>
+  <text x="640" y="550" fill="#0A2F78" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" text-anchor="middle">Landing final</text>
+  <text x="640" y="588" fill="#48607F" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="500" text-anchor="middle">Narrativa comercial + prova social + oferta + FAQ</text>
+  <text x="640" y="616" fill="#48607F" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="500" text-anchor="middle">Build estatica pronta para publicar em qualquer hosting.</text>
+</svg>
