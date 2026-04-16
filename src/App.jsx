@@ -18,6 +18,7 @@ import {
   Target,
   Users,
 } from "lucide-react";
+import Materials from "./pages/Materials";
 
 const instagramLink = "https://www.instagram.com/_easyenglishnow/";
 const hotmartLink = "https://hotmart.com/pt-br/club/easy-inglish-now";
@@ -256,6 +257,7 @@ export default function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [activeWord, setActiveWord] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
+  const [currentPage, setCurrentPage] = useState("home");
 
   useEffect(() => {
     const splashTimer = window.setTimeout(() => {
@@ -274,6 +276,10 @@ export default function App() {
   }, []);
 
   const tickerLoop = [...tickerItems, ...tickerItems];
+
+  if (currentPage === "materials") {
+    return <Materials onBack={() => setCurrentPage("home")} />;
+  }
 
   return (
     <>
@@ -298,6 +304,10 @@ export default function App() {
               <Sparkles aria-hidden="true" size={14} />
               matriculas abertas
             </span>
+            <button className="button-link button-link--small button-link--materials" onClick={() => setCurrentPage("materials")}>
+              <span>MATERIAS</span>
+              <ArrowRight aria-hidden="true" size={18} />
+            </button>
             <ButtonLink href={hotmartLink} className="button-link--small">
               garantir vaga agora
             </ButtonLink>
