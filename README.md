@@ -1,195 +1,268 @@
-<p align="center">
-  <img src="./docs/readme/hero-banner.svg" alt="Easy English Now README banner" width="100%" />
-</p>
+<div align="center">
+  <img src="./docs/readme/hero-banner.svg" alt="Easy English Now" width="100%" />
+  
+  ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+  ![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+  ![Status](https://img.shields.io/badge/Status-Production-success?style=for-the-badge)
+  ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+</div>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React-19-0A2F78?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" />
-  <img src="https://img.shields.io/badge/Vite-6-1676D2?style=for-the-badge&logo=vite&logoColor=FFD35F" alt="Vite 6" />
-  <img src="https://img.shields.io/badge/Status-Pronto%20para%20campanha-F04B36?style=for-the-badge" alt="Status" />
-  <img src="https://img.shields.io/badge/Layout-Responsivo-0E8F5B?style=for-the-badge" alt="Responsivo" />
-</p>
+---
 
-<p align="center">
-  <a href="#visao-geral">Visao geral</a> |
-  <a href="#preview">Preview</a> |
-  <a href="#destaques">Destaques</a> |
-  <a href="#stack">Stack</a> |
-  <a href="#como-rodar">Como rodar</a> |
-  <a href="#publicacao">Publicacao</a>
-</p>
+## 📋 Índice
 
-# Easy English Now
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Funcionalidades](#-funcionalidades)
+- [Tecnologias](#-tecnologias)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Instalação](#-instalação)
+- [Como Usar](#-como-usar)
+- [Customização](#-customização)
+- [Deploy](#-deploy)
+- [Contribuindo](#-contribuindo)
 
-Landing page premium para promover o produto digital `Easy English Now`, desenvolvida com `React + Vite` e desenhada para conversao direta via Hotmart.
+---
 
-O projeto entrega uma pagina comercial de alto impacto com narrativa objetiva, prova social, oferta clara e CTA direto para checkout externo.
+## 🎯 Sobre o Projeto
 
-## Visao geral
+**Easy English Now** é uma landing page premium desenvolvida para promover cursos de inglês da Teacher Kilane. O projeto combina design moderno, alta performance e foco em conversão.
 
-- Hero forte com headline dinamica e CTA principal
-- Splash screen com identidade da marca
-- Blocos de dor, processo, prova social e oferta
-- FAQ em acordeao para reducao de objecoes
-- CTA fixo para mobile e navegacao pensada para conversao
-- SEO basico, Open Graph e Twitter Card configurados
+### Características Principais
 
-> Projeto estatico, sem backend e sem CMS. Toda a edicao principal acontece no front-end.
+✅ **Landing Page Otimizada** - Hero dinâmico, prova social e CTAs estratégicos  
+✅ **Biblioteca de Materiais** - Marketplace integrado com busca e filtros  
+✅ **Design Responsivo** - Experiência perfeita em mobile, tablet e desktop  
+✅ **Performance** - Carregamento rápido com Vite e React 19  
+✅ **SEO Otimizado** - Meta tags, Open Graph e Twitter Cards configurados
 
-## Preview
+---
 
-| Capa social | Hero desktop |
-| --- | --- |
-| ![Capa do projeto](./public/assets/SEO-EASY-ENGLISH-NOW.jpg) | ![Hero desktop](./public/assets/1a-DOBRA-EASY-ENGLISH-NOW.jpg) |
+## ⚡ Funcionalidades
 
-| Hero mobile | Bloco de autoridade |
-| --- | --- |
-| <img src="./public/assets/1a-DOBRA-MOBILE-EASY-ENGLISH-NOW.jpg" alt="Hero mobile" width="320" /> | ![Teacher Kilane](./public/assets/FOTO-03a-DOBRA.png) |
+### Landing Page
+- Splash screen animado com logo da marca
+- Hero section com headline dinâmica e rotação de palavras
+- Seções de dor, processo, prova social e autoridade
+- FAQ interativo com accordion
+- CTA fixo para mobile
+- Ticker animado com informações importantes
 
-## Destaques
+### Biblioteca de Materiais
+- Grid responsivo de produtos estilo e-commerce
+- Sistema de busca em tempo real
+- Filtros por categoria (Básico, Intermediário, Avançado)
+- Cards com imagem, descrição, preço e botão de compra
+- Navegação fluida sem reload de página
 
-| Area | O que entrega |
-| --- | --- |
-| Conversao | CTA principal no hero, CTA fixo no mobile e oferta com gatilhos de seguranca |
-| Autoridade | Imagens da Teacher Kilane, prova social e promessa clara de transformacao |
-| Experiencia | Layout responsivo, identidade visual forte e leitura guiada por secoes |
-| Conteudo | Dores do publico, explicacao do metodo, beneficios, FAQ e reforco de oferta |
-| SEO | `title`, `description`, `keywords`, Open Graph, Twitter Card e favicon |
+---
 
-## Mapa rapido
+## 🛠 Tecnologias
 
-<p align="center">
-  <img src="./docs/readme/project-map.svg" alt="Mapa rapido do projeto" width="100%" />
-</p>
+- **[React 19](https://react.dev/)** - Biblioteca JavaScript para interfaces
+- **[Vite 6](https://vitejs.dev/)** - Build tool e dev server ultrarrápido
+- **[Lucide React](https://lucide.dev/)** - Ícones modernos e customizáveis
+- **CSS Puro** - Estilização sem frameworks, totalmente customizável
 
-## Estrutura da landing
+---
 
-1. Splash de entrada com logo da marca.
-2. Hero com headline dinamica, CTA e sinais de confianca.
-3. Bloco de dor para conectar com o publico.
-4. Explicacao simples do metodo em 3 passos.
-5. Prova social com numeros e reforco de garantia.
-6. Apresentacao da Teacher Kilane.
-7. Lista de entregaveis da oferta.
-8. Oferta final com CTA para Hotmart.
-9. FAQ para reduzir objecoes antes da compra.
+## 📁 Estrutura do Projeto
 
-## Stack
-
-- `React 19`
-- `Vite 6`
-- `lucide-react`
-- CSS puro em `src/styles.css`
-- Assets estaticos em `public/assets`
-
-## Estrutura do projeto
-
-```text
-.
-|-- docs/
-|   `-- readme/                   # assets visuais usados neste README
-|-- public/
-|   `-- assets/                   # imagens da landing, logo, favicon e capa SEO
-|-- src/
-|   |-- App.jsx                   # estrutura da pagina, copy e dados principais
-|   |-- main.jsx                  # bootstrap do React
-|   `-- styles.css                # identidade visual, layout e responsividade
-|-- dist/                         # build final para deploy
-|-- _reference/                   # referencias visuais originais
-|-- index.html                    # SEO, metadados e preload de imagens
-|-- package.json
-`-- vite.config.js
+```
+easy-english/
+├── public/
+│   └── assets/              # Imagens, logos e recursos estáticos
+├── src/
+│   ├── pages/
+│   │   └── Materials.jsx    # Página da biblioteca de materiais
+│   ├── App.jsx              # Componente principal e landing page
+│   ├── main.jsx             # Entry point do React
+│   └── styles.css           # Estilos globais e componentes
+├── docs/
+│   └── readme/              # Assets do README
+├── index.html               # HTML base com SEO
+├── package.json             # Dependências e scripts
+└── vite.config.js           # Configuração do Vite
 ```
 
-## Como rodar
+---
 
-### Requisitos
+## 📦 Instalação
 
-- `Node.js` 18 ou superior
-- `npm`
+### Pré-requisitos
 
-### Instalacao
+- Node.js 18+ ([Download](https://nodejs.org/))
+- npm ou yarn
 
+### Passo a Passo
+
+1. **Clone o repositório**
+```bash
+git clone https://github.com/seu-usuario/easy-english.git
+cd easy-english
+```
+
+2. **Instale as dependências**
 ```bash
 npm install
 ```
 
-### Desenvolvimento
-
+3. **Inicie o servidor de desenvolvimento**
 ```bash
 npm run dev
 ```
 
-### Build de producao
+4. **Acesse no navegador**
+```
+http://localhost:5173
+```
+
+---
+
+## 🚀 Como Usar
+
+### Scripts Disponíveis
+
+| Comando | Descrição |
+|---------|----------|
+| `npm run dev` | Inicia servidor de desenvolvimento com hot reload |
+| `npm run build` | Gera build otimizado para produção em `dist/` |
+| `npm run preview` | Preview local da build de produção |
+
+### Navegação
+
+- **Home** - Landing page principal com todas as seções
+- **Materiais** - Clique no botão "MATERIAS" no topo para acessar a biblioteca
+- **Voltar** - Use o botão "Voltar" na página de materiais para retornar à home
+
+---
+
+## 🎨 Customização
+
+### Editar Conteúdo da Landing Page
+
+Abra `src/App.jsx` e edite:
+
+```javascript
+// Links externos
+const instagramLink = "https://www.instagram.com/_easyenglishnow/";
+const hotmartLink = "https://hotmart.com/pt-br/club/easy-inglish-now";
+
+// Palavras rotativas no hero
+const heroWords = ["rápido", "prático", "eficaz", "definitivo"];
+
+// Perguntas frequentes
+const faqItems = [
+  {
+    question: "Sua pergunta aqui?",
+    answer: "Sua resposta aqui."
+  }
+];
+```
+
+### Adicionar Materiais
+
+Abra `src/pages/Materials.jsx` e edite o array:
+
+```javascript
+const materialsData = [
+  {
+    id: 1,
+    title: "Nome do Material",
+    description: "Descrição do material",
+    price: "R$ 97,00",
+    image: "/assets/imagem.png",
+    category: "basico" // basico, intermediario ou avancado
+  }
+];
+```
+
+### Personalizar Cores
+
+Abra `src/styles.css` e edite as variáveis CSS:
+
+```css
+:root {
+  --blue: #1676d2;
+  --red: #e63b2e;
+  --gold: #ffc94a;
+  /* ... outras variáveis */
+}
+```
+
+### Trocar Imagens
+
+1. Adicione suas imagens em `public/assets/`
+2. Atualize os caminhos em `src/App.jsx` ou `src/pages/Materials.jsx`
+
+---
+
+## 🌐 Deploy
+
+### Build de Produção
 
 ```bash
 npm run build
 ```
 
-### Preview local da build
+Isso gera a pasta `dist/` otimizada para produção.
 
+### Opções de Hospedagem
+
+#### Vercel (Recomendado)
 ```bash
-npm run preview
+npm i -g vercel
+vercel
 ```
 
-## Scripts
-
-| Script | Uso |
-| --- | --- |
-| `npm run dev` | inicia o ambiente local com hot reload |
-| `npm run build` | gera a build final em `dist/` |
-| `npm run preview` | sobe uma visualizacao local da build pronta |
-
-## Onde editar cada parte
-
-| Arquivo | Responsabilidade |
-| --- | --- |
-| `src/App.jsx` | copy, links, estrutura das secoes, FAQs e chamadas principais |
-| `src/styles.css` | cores, espacamento, tipografia, grids, animacoes e responsividade |
-| `public/assets/` | imagens da hero, fotos da marca, logo, favicon e capa de compartilhamento |
-| `index.html` | `title`, `description`, `keywords`, Open Graph, Twitter Card e preloads |
-
-## Pontos de customizacao rapida
-
-- Atualize `hotmartLink` e `instagramLink` em `src/App.jsx`
-- Revise os arrays de `heroWords`, `painPoints`, `processSteps`, `proofCards` e `faqItems`
-- Troque as imagens em `public/assets` mantendo os nomes ou atualizando os caminhos no componente
-- Ajuste a paleta e os tokens globais em `:root` dentro de `src/styles.css`
-
-## Publicacao
-
-Depois de gerar a build:
-
+#### Netlify
 ```bash
 npm run build
+# Arraste a pasta dist/ para netlify.com/drop
 ```
 
-publique a pasta `dist/` em qualquer hosting estatico:
+#### GitHub Pages
+```bash
+npm run build
+gh-pages -d dist
+```
 
-- Vercel
-- Netlify
-- Cloudflare Pages
-- GitHub Pages
-- hospedagem estatica tradicional
+### Checklist Pré-Deploy
 
-## Checklist antes de publicar
+- [ ] Atualizar links do Hotmart e Instagram
+- [ ] Revisar todos os textos e preços
+- [ ] Testar em mobile e desktop
+- [ ] Validar imagens e assets
+- [ ] Configurar domínio customizado
+- [ ] Adicionar Google Analytics (opcional)
 
-- confirmar o link real do checkout
-- revisar Instagram e demais links externos
-- validar copy, preco, garantia e numeros da oferta
-- revisar imagens finais em `public/assets`
-- validar SEO e compartilhamento em `index.html`
-- testar a pagina em mobile e desktop
+---
 
-## Observacoes
+## 🤝 Contribuindo
 
-- Nao ha backend ou painel administrativo
-- O conteudo esta hardcoded em `src/App.jsx`
-- A base atual e ideal para campanhas rapidas e ajustes visuais com baixo atrito
+Contribuições são bem-vindas! Siga os passos:
 
-## Proximos passos recomendados
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
 
-- adicionar analytics e eventos de conversao
-- integrar pixel do Meta e Google Ads
-- externalizar conteudo para JSON ou CMS
-- criar testes basicos de renderizacao
-- preparar variantes A/B de headline e oferta
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 📞 Contato
+
+**Teacher Kilane**  
+Instagram: [@_easyenglishnow](https://www.instagram.com/_easyenglishnow/)
+
+---
+
+<div align="center">
+  <p>Feito com ❤️ para transformar o ensino de inglês</p>
+  <p>⭐ Se este projeto te ajudou, deixe uma estrela!</p>
+</div>
