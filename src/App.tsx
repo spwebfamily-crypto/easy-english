@@ -7,14 +7,15 @@ import {
   CirclePlay,
   Star,
   Sparkles,
+  Languages,
   type LucideIcon,
 } from "lucide-react";
 import Materials from "./pages/Materials";
 import ContactForm from "./pages/ContactForm";
 import { useScrollReveal } from "./hooks/useScrollReveal";
+import { useTranslation } from "./contexts/LanguageContext";
+import type { Language } from "./constants/translations";
 import {
-  heroWords,
-  tickerItems,
   heroSignals,
   painPoints,
   processSteps,
@@ -132,11 +133,12 @@ function HeroPanel({ icon: Icon, kicker, title, description, items, accent, dela
 }
 
 function HeroPreview() {
+  const { t } = useTranslation();
   return (
     <div className="hero-visual">
       <div className="story-stage" data-reveal="right">
-        <span className="story-sticker story-sticker--left">🔥 vagas limitadas</span>
-        <span className="story-sticker story-sticker--right">⚡ começa hoje</span>
+        <span className="story-sticker story-sticker--left">{t.ticker[0]}</span>
+        <span className="story-sticker story-sticker--right">{t.ticker[2]}</span>
         <picture className="story-frame">
           <source media="(max-width: 820px)" srcSet="/assets/1a-DOBRA-MOBILE-EASY-ENGLISH-NOW.jpg" />
           <img
@@ -248,14 +250,58 @@ function FaqCard({ id, item, open, onToggle }: FaqCardProps) {
   );
 }
 
+function LanguageSwitcher() {
+  const { language, setLanguage } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const langs: { code: Language; label: string; flag: string }[] = [
+    { code: "pt", label: "Português", flag: "🇧🇷" },
+    { code: "en", label: "English", flag: "🇺🇸" },
+    { code: "es", label: "Español", flag: "🇪🇸" },
+    { code: "ru", label: "Русский", flag: "🇷🇺" },
+  ];
+
+  return (
+    <div className="lang-switcher">
+      <button 
+        className="button-link button-link--small button-link--secondary" 
+        onClick={() => setIsOpen(!isOpen)}
+        type="button"
+      >
+        <Languages size={18} />
+        <span>{langs.find(l => l.code === language)?.flag}</span>
+      </button>
+      {isOpen && (
+        <div className="lang-dropdown">
+          {langs.map((lang) => (
+            <button
+              key={lang.code}
+              className={`lang-option ${language === lang.code ? "is-active" : ""}`}
+              onClick={() => {
+                setLanguage(lang.code);
+                setIsOpen(false);
+              }}
+              type="button"
+            >
+              <span>{lang.flag}</span>
+              <span>{lang.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
+  const { t, language } = useTranslation();
   const [activeWord, setActiveWord] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
   const [currentPage, setCurrentPage] = useState<"home" | "materials" | "contact">("home");
   const [showMobileBar, setShowMobileBar] = useState(false);
   const teacherCardRef = useRef<HTMLDivElement | null>(null);
 
-  useScrollReveal([currentPage]);
+  useScrollReveal([currentPage, language]);
 
   useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
@@ -266,10 +312,10 @@ export default function App() {
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
-      setActiveWord((current) => (current + 1) % heroWords.length);
+      setActiveWord((current) => (current + 1) % t.words.length);
     }, 2200);
     return () => window.clearInterval(intervalId);
-  }, []);
+  }, [t.words.length]);
 
   useEffect(() => {
     if (currentPage !== "home") {
@@ -297,263 +343,297 @@ export default function App() {
     };
   }, [currentPage]);
 
-  const tickerLoop = [...tickerItems, ...tickerItems];
+  const tickerLoop = [...t.ticker, ...t.ticker];
 
   const handleBackToHome = () => {
     window.scrollTo({ top: 0, behavior: "auto" });
     setCurrentPage("home");
   };
 
-  if (currentPage === "materials") {
-    return <Materials onBack={handleBackToHome} />;
-  }
+  const renderContent = () => {
+    if (currentPage === "materials") {
+      return <Materials onBack={handleBackToHome} />;
+    }
 
-  if (currentPage === "contact") {
-    return <ContactForm onBack={handleBackToHome} whatsappNumber={whatsappNumber} />;
-  }
+    if (currentPage === "contact") {
+      return <ContactForm onBack={handleBackToHome} whatsappNumber={whatsappNumber} />;
+    }
+
+    return (
+      <>
+        <section className="section hero" id="top">
+          <div className="container hero-grid">
+            <div className="hero-copy">
+              <span className="section-label" data-reveal="up">
+                <Star aria-hidden="true" size={14} />
+                {t.hero.label}
+              </span>
+
+              <h1 data-reveal="up" style={revealStyle(90)}>
+                {t.hero.title}
+                <span className="hero-word-wrap">
+                  {" "}
+                  <span className="hero-word">{t.words[activeWord]}</span>
+                </span>{" "}
+                {t.hero.titleSuffix}
+              </h1>
+
+              <p className="hero-description" data-reveal="up" style={revealStyle(180)}>
+                {t.hero.description}
+              </p>
+
+              <div className="hero-actions" data-reveal="up" style={revealStyle(270)}>
+                <ActionButton className="button-link--pulse" onClick={() => setCurrentPage("contact")}>
+                  {t.hero.ctaStart}
+                </ActionButton>
+                <ActionButton
+                  className="button-link--secondary"
+                  onClick={() => setCurrentPage("materials")}
+                  icon={BookOpenText}
+                >
+                  {t.hero.ctaMaterials}
+                </ActionButton>
+              </div>
+
+              <div className="signal-grid">
+                {t.signals.map((signal, index) => (
+                  <MetricCard
+                    key={signal.label}
+                    value={signal.value}
+                    label={signal.label}
+                    delay={260 + index * 80}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <HeroPreview />
+          </div>
+        </section>
+
+        <section className="ticker" aria-hidden="true">
+          <div className="ticker__track">
+            {tickerLoop.map((item, index) => (
+              <span className="ticker__item" key={`${item}-${index}`}>
+                <CirclePlay aria-hidden="true" size={15} />
+                {item}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" data-tone="panel">
+          <div className="container">
+            <SectionIntro
+              label={t.pain.label}
+              title={t.pain.title}
+              description={t.pain.description}
+            />
+            <div className="card-grid">
+              {t.pain.items.map((item, index) => (
+                <FeatureCard
+                  key={item.title}
+                  icon={painPoints[index].icon}
+                  {...item}
+                  delay={index * 80}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <SectionIntro
+              label={t.process.label}
+              title={t.process.title}
+              description={t.process.description}
+            />
+            <div className="card-grid card-grid--steps">
+              {t.process.items.map((item, index) => (
+                <FeatureCard
+                  key={item.title}
+                  icon={processSteps[index].icon}
+                  {...item}
+                  tone="step"
+                  delay={index * 100}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section" data-tone="warm">
+          <div className="container proof-layout">
+            <div className="proof-media">
+              <div className="proof-frame" data-reveal="left">
+                <img src="/assets/foto-4-dobra.png" alt="Teacher Kilane" loading="lazy" />
+              </div>
+              <div className="proof-badges" data-reveal="up" style={revealStyle(120)}>
+                <span>reels</span>
+                <span>carrosséis</span>
+                <span>stories</span>
+              </div>
+            </div>
+
+            <div className="proof-copy">
+              <SectionIntro
+                label={t.proof.label}
+                title={t.proof.title}
+                description={t.proof.description}
+              />
+              <div className="proof-grid">
+                {t.proof.items.map((item, index) => (
+                  <ProofCard
+                    key={item.title}
+                    icon={proofCards[index].icon}
+                    tone={proofCards[index].tone}
+                    {...item}
+                    delay={index * 100}
+                  />
+                ))}
+              </div>
+              <p className="section-note" data-reveal="up" style={revealStyle(180)}>
+                {t.proof.footer}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" ref={teacherCardRef}>
+          <div className="container">
+            <div className="teacher-card" data-reveal="up">
+              <div className="teacher-card__media" data-reveal="left">
+                <img src="/assets/FOTO-03a-DOBRA.png" alt="Teacher Kilane" loading="lazy" />
+              </div>
+              <div className="teacher-card__copy">
+                <span className="section-label section-label--dark">{t.teacher.label}</span>
+                <h2>{t.teacher.name}</h2>
+                <p>{t.teacher.description}</p>
+                <ul className="teacher-points">
+                  {t.teacher.points.map((item) => (
+                    <li key={item.label}>
+                      <CheckCircle2 aria-hidden="true" size={18} />
+                      <span>{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
+                <ButtonLink href={instagramLink} className="button-link--secondary">
+                  Instagram
+                </ButtonLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section offer" id="checkout">
+          <div className="container">
+            <div className="offer-card" data-reveal="up">
+              <div className="offer-main">
+                <SectionIntro
+                  label={t.offer.label}
+                  title={t.offer.title}
+                  description={t.offer.description}
+                />
+                <div className="hero-actions">
+                  <ActionButton className="button-link--pulse" onClick={() => setCurrentPage("contact")}>
+                    {t.offer.cta}
+                  </ActionButton>
+                </div>
+              </div>
+              <aside className="offer-side">
+                <h3>{t.offer.benefitsTitle}</h3>
+                <ul className="offer-side__list">
+                  {t.offer.benefits.map((benefit) => (
+                    <li key={benefit}>{benefit}</li>
+                  ))}
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section className="section faq">
+          <div className="container">
+            <SectionIntro
+              label={t.faq.label}
+              title={t.faq.title}
+              description={t.faq.description}
+            />
+            <div className="faq-list">
+              {t.faq.items.map((item, index) => (
+                <FaqCard
+                  key={item.question}
+                  id={`faq-item-${index}`}
+                  item={item}
+                  open={openFaq === index}
+                  onToggle={() => setOpenFaq((current) => (current === index ? -1 : index))}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  };
 
   return (
     <>
       <div className="site-shell">
         <header className="topbar">
           <div className="container topbar__inner">
-            <a className="brand-lockup" href="#top">
+            <button className="brand-lockup" onClick={handleBackToHome} type="button" style={{ background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer' }}>
               <img src="/assets/LOGO-EASY-ENGLISH-NOW.png" alt="Logo Easy English Now" />
               <div>
                 <strong>Easy English Now</strong>
                 <span>Teacher Kilane | inglês do zero</span>
               </div>
-            </a>
+            </button>
 
             <div className="topbar__actions">
               <span className="status-pill">
                 <Sparkles aria-hidden="true" size={14} />
-                matrículas abertas
+                {t.topbar.status}
               </span>
+
+              <LanguageSwitcher />
 
               <button
                 className="button-link button-link--small button-link--materials"
                 onClick={() => setCurrentPage("materials")}
                 type="button"
               >
-                <span>Materiais🎒</span>
+                <span>{t.topbar.materials}</span>
                 <ArrowRight aria-hidden="true" size={18} />
               </button>
 
               <ActionButton
                 className="button-link--small"
                 onClick={() => setCurrentPage("contact")}
+                icon={CheckCircle2}
               >
-                garantir vaga agora
+                {t.topbar.cta}
               </ActionButton>
             </div>
           </div>
         </header>
 
-        <main>
-          <section className="section hero" id="top">
-            <div className="container hero-grid">
-              <div className="hero-copy">
-                <span className="section-label" data-reveal="up">
-                  <Star aria-hidden="true" size={14} />
-                  🎯 Método exclusivo Teacher Kilane
-                </span>
-
-                <h1 data-reveal="up" style={revealStyle(90)}>
-                  Fale inglês fluente
-                  <span className="hero-word-wrap">
-                    de forma <span className="hero-word">{heroWords[activeWord]}</span>
-                  </span>
-                  em apenas semanas
-                </h1>
-
-                <p className="hero-description" data-reveal="up" style={revealStyle(180)}>
-                  Descubra o método que já ajudou +1.000 pessoas a saírem do zero e falarem inglês
-                  com confiança. Aulas práticas, diretas e sem enrolação. Começa hoje mesmo.
-                </p>
-
-                <div className="hero-actions" data-reveal="up" style={revealStyle(270)}>
-                  <ActionButton className="button-link--pulse" onClick={() => setCurrentPage("contact")}>
-                    quero começar agora 🚀
-                  </ActionButton>
-                  <ActionButton className="button-link--secondary" onClick={() => setCurrentPage("materials")} icon={BookOpenText}>
-                    ver materiais 📚
-                  </ActionButton>
-                </div>
-
-                <div className="signal-grid">
-                  {heroSignals.map((signal, index) => (
-                    <MetricCard
-                      key={signal.label}
-                      value={signal.value}
-                      label={signal.label}
-                      delay={260 + index * 80}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <HeroPreview />
-            </div>
-          </section>
-
-          <section className="ticker" aria-hidden="true">
-            <div className="ticker__track">
-              {tickerLoop.map((item, index) => (
-                <span className="ticker__item" key={`${item}-${index}`}>
-                  <CirclePlay aria-hidden="true" size={15} />
-                  {item}
-                </span>
-              ))}
-            </div>
-          </section>
-
-          <section className="section" data-tone="panel">
-            <div className="container">
-              <SectionIntro
-                label="🔥 Sua dor"
-                title="Você já tentou aprender inglês e não conseguiu?"
-                description="Sabemos exatamente como você se sente. Milhares de pessoas passam pelos mesmos problemas todos os dias. Mas isso acaba agora."
-              />
-              <div className="card-grid">
-                {painPoints.map((item, index) => (
-                  <FeatureCard key={item.title} {...item} delay={index * 80} />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="section">
-            <div className="container">
-              <SectionIntro
-                label="✅ Como funciona"
-                title="3 passos simples para você falar inglês fluente"
-                description="Nosso método é direto, prático e comprovado. Veja como é fácil começar sua transformação hoje mesmo."
-              />
-              <div className="card-grid card-grid--steps">
-                {processSteps.map((item, index) => (
-                  <FeatureCard key={item.title} {...item} tone="step" delay={index * 100} />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="section" data-tone="warm">
-            <div className="container proof-layout">
-              <div className="proof-media">
-                <div className="proof-frame" data-reveal="left">
-                  <img
-                    src="/assets/foto-4-dobra.png"
-                    alt="Teacher Kilane"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="proof-badges" data-reveal="up" style={revealStyle(120)}>
-                  <span>reels</span>
-                  <span>carrosséis</span>
-                  <span>stories</span>
-                </div>
-              </div>
-
-              <div className="proof-copy">
-                <SectionIntro
-                  label="🏆 Prova social"
-                  title="Mais de 1.000 alunos já transformaram suas vidas"
-                  description="Não é promessa vazia. Veja os resultados reais de quem já investiu no Easy English Now."
-                />
-                <div className="proof-grid">
-                  {proofCards.map((item, index) => (
-                    <ProofCard key={item.title} {...item} delay={index * 100} />
-                  ))}
-                </div>
-                <p className="section-note" data-reveal="up" style={revealStyle(180)}>
-                  🛡️ Compra segura | ✅ Garantia 7 dias | 💎 Acesso vitalício
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="section" ref={teacherCardRef}>
-            <div className="container">
-              <div className="teacher-card" data-reveal="up">
-                <div className="teacher-card__media" data-reveal="left">
-                  <img src="/assets/FOTO-03a-DOBRA.png" alt="Teacher Kilane" loading="lazy" />
-                </div>
-                <div className="teacher-card__copy">
-                  <span className="section-label section-label--dark">👩‍🏫 Sua professora</span>
-                  <h2>Conheça a Teacher Kilane</h2>
-                  <p>Professora de inglês há mais de 10 anos, a Teacher Kilane já ajudou milhares de pessoas.</p>
-                  <ul className="teacher-points">
-                    {teacherPoints.map((item) => (
-                      <li key={item.label}>
-                        <CheckCircle2 aria-hidden="true" size={18} />
-                        <span>{item.label}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <ButtonLink href={instagramLink} className="button-link--secondary">
-                    Instagram
-                  </ButtonLink>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="section offer" id="checkout">
-            <div className="container">
-              <div className="offer-card" data-reveal="up">
-                <div className="offer-main">
-                  <SectionIntro
-                    label="🔥 Oferta especial"
-                    title="Garanta sua vaga agora"
-                    description="Chegou a sua vez de falar inglês fluente."
-                  />
-                  <div className="hero-actions">
-                    <ActionButton className="button-link--pulse" onClick={() => setCurrentPage("contact")}>
-                      quero minha vaga! 🔥
-                    </ActionButton>
-                  </div>
-                </div>
-                <aside className="offer-side">
-                  <h3>🎯 Benefícios</h3>
-                  <ul className="offer-side__list">
-                    <li>✅ +1.000 alunos satisfeitos</li>
-                    <li>🚀 Resultados rápidos</li>
-                    <li>💎 Acesso vitalício</li>
-                  </ul>
-                </aside>
-              </div>
-            </div>
-          </section>
-
-          <section className="section faq">
-            <div className="container">
-              <SectionIntro label="❓ FAQ" title="Dúvidas frequentes" description="Respostas rápidas para você." />
-              <div className="faq-list">
-                {faqItems.map((item, index) => (
-                  <FaqCard
-                    key={item.question}
-                    id={`faq-item-${index}`}
-                    item={item}
-                    open={openFaq === index}
-                    onToggle={() => setOpenFaq((current) => (current === index ? -1 : index))}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        </main>
+        <main>{renderContent()}</main>
 
         <footer className="footer">
           <div className="container">
             <div className="footer__panel">
               <div className="footer__brand">
                 <img src="/assets/LOGO-EASY-ENGLISH-NOW.png" alt="Easy English Now" loading="lazy" />
-                <p>Easy English Now - Teacher Kilane. Transforme seu inglês hoje.</p>
+                <p>{t.footer.brand}</p>
               </div>
               <div className="footer__bottom">
-                <p>© 2026 Easy English Now. Todos os direitos reservados.</p>
-                <a href="#top">voltar ao topo</a>
+                <p>{t.footer.copy}</p>
+                <a href="#top" onClick={(e) => {
+                  if (currentPage === 'home') return;
+                  e.preventDefault();
+                  handleBackToHome();
+                }}>{t.footer.top}</a>
               </div>
             </div>
           </div>
@@ -561,11 +641,11 @@ export default function App() {
 
         <div className={`mobile-bar ${showMobileBar ? "is-visible" : ""}`}>
           <div className="mobile-bar__copy">
-            <strong>🔥 Materiais exclusivos</strong>
-            <span>Garanta seu acesso agora</span>
+            <strong>{t.mobileBar.title}</strong>
+            <span>{t.mobileBar.subtitle}</span>
           </div>
           <ActionButton className="button-link--mobile" onClick={() => setCurrentPage("materials")}>
-            Quero meu material NOW📚
+            {t.mobileBar.cta}
           </ActionButton>
         </div>
       </div>

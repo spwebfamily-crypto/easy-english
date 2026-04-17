@@ -1,6 +1,7 @@
 import { ArrowLeft, Search, X } from "lucide-react";
 import { useState, type CSSProperties } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useTranslation } from "../contexts/LanguageContext";
 
 type MaterialCategory = "todos" | "basico" | "intermediario" | "avancado";
 
@@ -11,46 +12,11 @@ type MaterialCardData = {
   image: string;
   category: Exclude<MaterialCategory, "todos">;
   badge: string;
+  cta?: string;
 };
 
 type MaterialsProps = {
   onBack: () => void;
-};
-
-function buildMaterialsData(): MaterialCardData[] {
-  return [
-    {
-      id: 1,
-      title: "Easy Book",
-      description: "O guia prático e ilustrado para destravar sua base no inglês com exercícios reais. Ideal para quem está começando e precisa de uma base sólida. Conteúdo focado em gramática essencial, vocabulário do dia a dia e pronúncia básica.",
-      image: "/capas/easy-english-easy-book.png",
-      category: "basico",
-      badge: "Mais procurado",
-    },
-    {
-      id: 2,
-      title: "Easy Travel",
-      description: "Sua bagagem linguística essencial para viajar o mundo sem medo de falar. Focado em situações reais de aeroporto, hotel e restaurantes. Aprenda como pedir informações, fazer check-in e se comunicar em emergências.",
-      image: "/capas/easy-travel.png",
-      category: "intermediario",
-      badge: "Edição Especial",
-    },
-    {
-      id: 3,
-      title: "Easy Business",
-      description: "Domine o vocabulário corporativo e as situações de trabalho mais comuns. Perfeito para reuniões, apresentações e negociações em inglês. Aprenda como escrever e-mails formais e participar de chamadas internacionais com confiança.",
-      image: "/capas/easy-english-business.png",
-      category: "avancado",
-      badge: "Profissional",
-    },
-  ];
-}
-
-const categoryLabels: Record<MaterialCategory, string> = {
-  todos: "Todos",
-  basico: "Básico",
-  intermediario: "Intermediário",
-  avancado: "Avançado",
 };
 
 function revealStyle(delay = 0): CSSProperties {
@@ -61,9 +27,10 @@ type LibraryCardProps = {
   material: MaterialCardData;
   delay?: number;
   onClick: (material: MaterialCardData) => void;
+  detailsLabel: string;
 };
 
-function LibraryCard({ material, delay = 0, onClick }: LibraryCardProps) {
+function LibraryCard({ material, delay = 0, onClick, detailsLabel }: LibraryCardProps) {
   return (
     <article 
       className="library-item" 
@@ -75,7 +42,7 @@ function LibraryCard({ material, delay = 0, onClick }: LibraryCardProps) {
         <img src={material.image} alt={material.title} loading="lazy" />
         <span className="library-item__badge">{material.badge}</span>
         <div className="library-item__overlay">
-          <span>Ver Detalhes</span>
+          <span>{detailsLabel}</span>
         </div>
       </div>
       <h3 className="library-item__title">{material.title}</h3>
@@ -84,13 +51,23 @@ function LibraryCard({ material, delay = 0, onClick }: LibraryCardProps) {
 }
 
 export default function Materials({ onBack }: MaterialsProps) {
+  const { t, language } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<MaterialCategory>("todos");
   const [activeMaterial, setActiveMaterial] = useState<MaterialCardData | null>(null);
 
-  useScrollReveal([searchTerm, selectedCategory]);
+  useScrollReveal([searchTerm, selectedCategory, language]);
 
-  const materialsData = buildMaterialsData();
+  const materialsData: MaterialCardData[] = t.materials.items.map((item, index) => ({
+    ...item,
+    image: [
+      "/capas/easy-english-easy-book.png",
+      "/capas/easy-travel.png",
+      "/capas/easy-english-business.png"
+    ][index],
+    category: ["basico", "intermediario", "avancado"][index] as Exclude<MaterialCategory, "todos">
+  }));
+
   const normalizedSearch = searchTerm.trim().toLowerCase();
 
   const filteredMaterials = materialsData.filter((material) => {
@@ -100,7 +77,7 @@ export default function Materials({ onBack }: MaterialsProps) {
         material.title,
         material.description,
         material.badge,
-        categoryLabels[material.category],
+        t.materials.categories[material.category],
       ].some((value) => value.toLowerCase().includes(normalizedSearch));
     const matchesCategory =
       selectedCategory === "todos" || material.category === selectedCategory;
@@ -112,17 +89,12 @@ export default function Materials({ onBack }: MaterialsProps) {
     <div className="materials-page">
       <header className="materials-header">
         <div className="container">
-          <button className="back-button is-visible" onClick={onBack} type="button" data-reveal="left">
-            <ArrowLeft size={20} />
-            <span>Voltar</span>
-          </button>
-
           <h1 data-reveal="up" style={revealStyle(80)}>
-            Biblioteca Digital
+            {t.materials.title}
           </h1>
 
           <p data-reveal="up" style={revealStyle(160)}>
-            Clique em uma das capas para explorar o conteúdo de cada material.
+            {t.materials.description}
           </p>
         </div>
       </header>
@@ -133,7 +105,7 @@ export default function Materials({ onBack }: MaterialsProps) {
             <Search size={18} />
             <input
               type="text"
-              placeholder="Buscar livro..."
+              placeholder={t.materials.searchPlaceholder}
               aria-label="Buscar materiais"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
@@ -141,7 +113,7 @@ export default function Materials({ onBack }: MaterialsProps) {
           </div>
 
           <div className="category-filters" data-reveal="up" style={revealStyle(100)}>
-            {Object.entries(categoryLabels).map(([value, label]) => (
+            {Object.entries(t.materials.categories).map(([value, label]) => (
               <button
                 key={value}
                 className={selectedCategory === value ? "active" : ""}
@@ -159,7 +131,7 @@ export default function Materials({ onBack }: MaterialsProps) {
         <div className="container">
           {filteredMaterials.length === 0 ? (
             <div className="empty-state">
-              <p>Nenhum livro encontrado.</p>
+              <p>{t.materials.empty}</p>
             </div>
           ) : (
             <div className="library-grid">
@@ -169,6 +141,7 @@ export default function Materials({ onBack }: MaterialsProps) {
                   material={material} 
                   delay={index * 90} 
                   onClick={setActiveMaterial}
+                  detailsLabel={t.materials.details}
                 />
               ))}
             </div>
@@ -179,9 +152,11 @@ export default function Materials({ onBack }: MaterialsProps) {
       {activeMaterial && (
         <div className="modal-overlay" onClick={() => setActiveMaterial(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setActiveMaterial(null)}>
-              <X size={24} />
-            </button>
+            <div className="modal-header-mobile">
+              <button className="modal-close" onClick={() => setActiveMaterial(null)}>
+                <X size={24} />
+              </button>
+            </div>
             
             <div className="modal-body">
               <div className="modal-image">
@@ -189,7 +164,7 @@ export default function Materials({ onBack }: MaterialsProps) {
               </div>
               <div className="modal-info">
                 <span className="library-item__category">
-                  {categoryLabels[activeMaterial.category]}
+                  {t.materials.categories[activeMaterial.category]}
                 </span>
                 <h2>{activeMaterial.title}</h2>
                 <div className="modal-badge">{activeMaterial.badge}</div>
@@ -202,7 +177,29 @@ export default function Materials({ onBack }: MaterialsProps) {
                     className="button-link button-link--pulse"
                     style={{ marginTop: '20px' }}
                   >
-                    <span>Quero meu Easy Book NOW</span>
+                    <span>{activeMaterial.cta}</span>
+                  </a>
+                )}
+                {activeMaterial.id === 2 && (
+                  <a 
+                    href="https://hotmart.com/pt-br/marketplace/produtos/ingles-para-viagens-fale-com-seguranca-em-qualquer-pais/G105107385P?sck=HOTMART_MEM_CA" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="button-link button-link--pulse"
+                    style={{ marginTop: '20px' }}
+                  >
+                    <span>{activeMaterial.cta}</span>
+                  </a>
+                )}
+                {activeMaterial.id === 3 && (
+                  <a 
+                    href="https://hotmart.com/pt-br/marketplace/produtos/ingles-para-negocios-fale-com-seguranca-no-ambiente-profissional/E105107802L?sck=HOTMART_MEM_CA" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="button-link button-link--pulse"
+                    style={{ marginTop: '20px' }}
+                  >
+                    <span>{activeMaterial.cta}</span>
                   </a>
                 )}
               </div>

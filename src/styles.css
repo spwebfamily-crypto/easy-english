@@ -2043,29 +2043,48 @@ button {
   background: var(--surface-strong);
   width: 100%;
   max-width: 900px;
+  max-height: 90vh; /* Limita a altura para não sumir da tela */
   border-radius: var(--radius-lg);
   position: relative;
   box-shadow: var(--shadow-lg);
-  overflow: hidden;
+  overflow-y: auto; /* Permite scroll se o conteúdo for grande */
   animation: modalScaleUp 400ms var(--ease);
 }
 
 .modal-close {
-  position: absolute;
+  position: sticky; /* Muda para sticky para acompanhar o scroll no mobile se necessário, ou mantém absolute se o header for fixo */
   top: 16px;
-  right: 16px;
-  z-index: 10;
-  width: 40px;
-  height: 40px;
+  float: right;
+  margin-right: 16px;
+  margin-top: 16px;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--line);
+  background: white;
+  border: 2px solid var(--line-strong);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: var(--blue-deep);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: all 200ms var(--ease);
+}
+
+/* Ajuste específico para garantir que o X esteja sempre visível no topo */
+.modal-header-mobile {
+  position: sticky;
+  top: 0;
+  right: 0;
+  z-index: 110;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.modal-header-mobile .modal-close {
+  pointer-events: auto;
 }
 
 .modal-close:hover {
@@ -2144,17 +2163,29 @@ button {
   .modal-body {
     grid-template-columns: 1fr;
   }
-  
+
   .modal-image {
-    padding: 30px;
+    padding: 20px;
+    max-height: 300px;
   }
-  
+
+  .modal-image img {
+    max-height: 250px;
+  }
+
   .modal-info {
-    padding: 30px;
+    padding: 24px;
+    text-align: center;
+    align-items: center;
   }
-  
+
   .modal-info h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+  }
+
+  .modal-info p {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 }
 
@@ -2512,15 +2543,230 @@ button {
   }
 }
 
+/* Responsive Layouts */
+@media (max-width: 959px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-copy {
+    justify-items: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .signal-grid {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+
+  .hero-visual {
+    margin-top: 40px;
+  }
+
+  .teacher-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .teacher-card__media {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .teacher-points li {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .offer-card {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-side {
+    text-align: center;
+  }
+
+  .offer-side__list li {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 719px) {
-  .topbar__actions .status-pill {
+  .hero-copy h1 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+  }
+
+  .signal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid--steps {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-media {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .footer__panel {
+    padding: 40px 20px;
+  }
+
+  .footer__bottom {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+  }
+
+  .hero-panels {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card-grid--steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .proof-layout {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+  }
+
+  .teacher-card {
+    grid-template-columns: 400px 1fr;
+    gap: 60px;
+    padding: 60px;
+  }
+
+  .offer-card {
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    padding: 60px;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+  }
+}
+
+@media (max-width: 959px) {
+  .topbar__inner {
+    padding: 10px 0; /* Restaurado padding vertical */
+    height: auto; /* Altura automática para evitar cortes */
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: nowrap; /* Impede quebra de linha que "quebra" o layout */
+  }
+
+  .brand-lockup {
+    flex: 0 1 auto;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand-lockup img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .brand-lockup div strong {
+    font-size: 0.85rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px; /* Garante espaço para os botões */
+  }
+
+  .brand-lockup div span {
     display: none;
   }
 
-  .brand-lockup span {
-    display: none;
+  .topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
   }
 
+  .status-pill {
+    display: none !important;
+  }
+
+  /* Botões ultra compactos no mobile */
+  .button-link--small {
+    padding: 0 8px;
+    min-height: 38px;
+    font-size: 0.75rem;
+    gap: 4px;
+  }
+
+  .button-link--small span {
+    display: none !important; /* Esconde texto em telas pequenas */
+  }
+
+  .button-link--small svg {
+    margin: 0 !important;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Seletor de idioma fixo */
+  .lang-switcher .button-link--small {
+    padding: 0 6px;
+  }
+
+  /* Em telas um pouco maiores, mostra o texto do botão principal */
+  @media (min-width: 480px) {
+    .brand-lockup div strong {
+      max-width: 140px;
+    }
+    .topbar__actions {
+      gap: 6px;
+    }
+  }
+
+  /* Em tablets, volta ao normal */
+  @media (min-width: 768px) {
+    .button-link--small span {
+      display: inline !important;
+    }
+    .brand-lockup div strong {
+      max-width: none;
+    }
+    .brand-lockup img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+
+@media (max-width: 719px) {
   .footer__links,
   .footer__links .footer__link {
     width: 100%;
@@ -2528,13 +2774,8 @@ button {
 }
 
 @media (max-width: 520px) {
-  .topbar__inner {
-    align-items: flex-start;
-  }
-
   .topbar__actions {
-    width: 100%;
-    justify-content: space-between;
+    width: auto;
   }
 
   .hero-copy h1 {
@@ -2607,4 +2848,58 @@ button {
     filter: none;
     transform: none;
   }
+}
+
+/* Language Switcher */
+.lang-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 8px;
+  min-width: 140px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid rgba(0,0,0,0.05);
+  animation: slideUp 0.2s ease;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--blue-deep);
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.lang-option:hover {
+  background: rgba(22, 118, 210, 0.05);
+}
+
+.lang-option.is-active {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

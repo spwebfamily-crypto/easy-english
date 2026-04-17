@@ -1,272 +1,86 @@
-<div align="center">
-  <img src="./docs/readme/hero-banner.svg" alt="Easy English Now" width="100%" />
-  
-  ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-  ![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-  ![Status](https://img.shields.io/badge/Status-Production-success?style=for-the-badge)
-  ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-</div>
+# 🎓 Easy English Now
+
+**Easy English Now** é uma plataforma educacional premium desenvolvida para a **Teacher Kilane**, focada no ensino de inglês do zero à fluência. O projeto oferece uma experiência moderna, multilíngue e altamente performática para alunos ao redor do mundo.
 
 ---
 
-## 📋 Índice
+## 🌍 Diferenciais Multilíngue
 
-- [Sobre o Projeto](#-sobre-o-projeto)
-- [Funcionalidades](#-funcionalidades)
-- [Tecnologias](#-tecnologias)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Instalação](#-instalação)
-- [Como Usar](#-como-usar)
-- [Customização](#-customização)
-- [Deploy](#-deploy)
-- [Contribuindo](#-contribuindo)
+O projeto conta com um sistema de internacionalização robusto que detecta automaticamente o idioma do usuário e oferece suporte completo para:
+- **Português (Brasil)** 🇧🇷
+- **English (US)** 🇺🇸
+- **Español** 🇪🇸
+- **Русский (Russian)** 🇷🇺
 
 ---
 
-## 🎯 Sobre o Projeto
+## ⚡ Funcionalidades Principais
 
-**Easy English Now** é uma landing page premium desenvolvida para promover cursos de inglês da Teacher Kilane. O projeto combina design moderno, alta performance e foco em conversão.
+### 🚀 Landing Page de Alta Conversão
+- **Hero Dinâmico**: Headline com rotação de palavras-chave e chamadas estratégicas.
+- **Prova Social**: Seção dedicada com métricas de sucesso e depoimentos.
+- **Autoridade**: Espaço para apresentação da Teacher Kilane e seu método exclusivo.
+- **FAQ Inteligente**: Sistema de perguntas frequentes para sanar dúvidas rápidas.
 
-### Características Principais
+### 📚 Biblioteca Digital (Materials)
+- **Marketplace Integrado**: Visualização de materiais didáticos (Easy Book, Easy Travel, Easy Business).
+- **Busca e Filtros**: Filtre por nível (Básico, Intermediário, Avançado) ou pesquise por títulos.
+- **Modais de Detalhes**: Janelas informativas otimizadas para mobile com link direto para aquisição.
 
-✅ **Landing Page Otimizada** - Hero dinâmico, prova social e CTAs estratégicos  
-✅ **Biblioteca de Materiais** - Marketplace integrado com busca e filtros  
-✅ **Design Responsivo** - Experiência perfeita em mobile, tablet e desktop  
-✅ **Performance** - Carregamento rápido com Vite e React 19  
-✅ **SEO Otimizado** - Meta tags, Open Graph e Twitter Cards configurados
-
----
-
-## ⚡ Funcionalidades
-
-### Landing Page
-- Splash screen animado com logo da marca
-- Hero section com headline dinâmica e rotação de palavras
-- Seções de dor, processo, prova social e autoridade
-- FAQ interativo com accordion
-- CTA fixo para mobile
-- Ticker animado com informações importantes
-
-### Biblioteca de Materiais
-- Grid responsivo de produtos estilo e-commerce
-- Sistema de busca em tempo real
-- Filtros por categoria (Básico, Intermediário, Avançado)
-- Cards com imagem, descrição, preço e CTA configurável
-- Navegação fluida sem reload de página
+### 🛡️ Segurança e Privacidade
+- **Formulário de Contato Protegido**: Camadas contra robôs (Honeypot), Rate Limiting e sanitização de dados.
+- **Privacidade de Dados**: O número oficial de atendimento é mantido privado até a validação do formulário.
 
 ---
 
-## 🛠 Tecnologias
+## 🛠️ Tecnologias Utilizadas
 
-- **[React 19](https://react.dev/)** - Biblioteca JavaScript para interfaces
-- **[Vite 6](https://vitejs.dev/)** - Build tool e dev server ultrarrápido
-- **[Lucide React](https://lucide.dev/)** - Ícones modernos e customizáveis
-- **CSS Puro** - Estilização sem frameworks, totalmente customizável
+- **React 19**: A versão mais recente para uma interface reativa e veloz.
+- **Vite**: Ferramenta de build de última geração para carregamento instantâneo.
+- **TypeScript**: Garantia de código robusto e livre de erros.
+- **Lucide React**: Biblioteca de ícones modernos e leves.
+- **CSS3 Moderno**: Layouts 100% responsivos com Grid e Flexbox, sem dependências pesadas.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Estrutura de Pastas
 
-```
-easy-english/
-├── public/
-│   └── assets/              # Imagens, logos e recursos estáticos
-├── src/
-│   ├── pages/
-│   │   └── Materials.tsx    # Página da biblioteca de materiais
-│   ├── App.tsx              # Componente principal e landing page
-│   ├── main.jsx             # Entry point do React
-│   └── styles.css           # Estilos globais e componentes
-├── docs/
-│   └── readme/              # Assets do README
-├── index.html               # HTML base com SEO
-├── package.json             # Dependências e scripts
-└── vite.config.js           # Configuração do Vite
+```text
+src/
+├── constants/      # Traduções e dados estáticos do site
+├── contexts/       # Gerenciamento de estado global (Idioma)
+├── hooks/          # Lógicas reutilizáveis (Scroll Reveal)
+├── pages/          # Páginas principais (Materiais, Contato)
+└── styles.css      # Estilização global e componentes
 ```
 
 ---
 
-## 📦 Instalação
+## 🚀 Como Iniciar
 
-### Pré-requisitos
+1. **Instalação**
+   ```bash
+   npm install
+   ```
 
-- Node.js 18+ ([Download](https://nodejs.org/))
-- npm ou yarn
+2. **Desenvolvimento**
+   ```bash
+   npm run dev
+   ```
 
-### Passo a Passo
-
-1. **Clone o repositório**
-```bash
-git clone https://github.com/seu-usuario/easy-english.git
-cd easy-english
-```
-
-2. **Instale as dependências**
-```bash
-npm install
-```
-
-3. **Inicie o servidor de desenvolvimento**
-```bash
-npm run dev
-```
-
-4. **Acesse no navegador**
-```
-http://localhost:5173
-```
-
----
-
-## 🚀 Como Usar
-
-### Scripts Disponíveis
-
-| Comando | Descrição |
-|---------|----------|
-| `npm run dev` | Inicia servidor de desenvolvimento com hot reload |
-| `npm run build` | Gera build otimizado para produção em `dist/` |
-| `npm run preview` | Preview local da build de produção |
-
-### Navegação
-
-- **Home** - Landing page principal com todas as seções
-- **Materiais** - Clique no botão "materiais" no topo para acessar a biblioteca
-- **Voltar** - Use o botão "Voltar" na página de materiais para retornar à home
-
----
-
-## 🎨 Customização
-
-### Editar Conteúdo da Landing Page
-
-Abra `src/App.tsx` e edite:
-
-```javascript
-// Links externos
-const instagramLink = "https://www.instagram.com/_easyenglishnow/";
-const hotmartLink = "https://hotmart.com/pt-br/club/easy-inglish-now";
-
-// Palavras rotativas no hero
-const heroWords = ["rápido", "prático", "eficaz", "definitivo"];
-
-// Perguntas frequentes
-const faqItems = [
-  {
-    question: "Sua pergunta aqui?",
-    answer: "Sua resposta aqui."
-  }
-];
-```
-
-### Adicionar Materiais
-
-Abra `src/pages/Materials.tsx` e edite a função `buildMaterialsData`:
-
-```javascript
-function buildMaterialsData(contactLink) {
-  return [
-    {
-      id: 1,
-      title: "Nome do Material",
-      description: "Descrição do material",
-      price: "R$ 97,00",
-      image: "/assets/imagem.png",
-      category: "basico", // basico, intermediario ou avancado
-      href: contactLink,
-      ctaLabel: "Pedir no Instagram"
-    }
-  ];
-}
-```
-
-### Personalizar Cores
-
-Abra `src/styles.css` e edite as variáveis CSS:
-
-```css
-:root {
-  --blue: #1676d2;
-  --red: #e63b2e;
-  --gold: #ffc94a;
-  /* ... outras variáveis */
-}
-```
-
-### Trocar Imagens
-
-1. Adicione suas imagens em `public/assets/`
-2. Atualize os caminhos em `src/App.tsx` ou `src/pages/Materials.tsx`
-
----
-
-## 🌐 Deploy
-
-### Build de Produção
-
-```bash
-npm run build
-```
-
-Isso gera a pasta `dist/` otimizada para produção.
-
-### Opções de Hospedagem
-
-#### Vercel (Recomendado)
-```bash
-npm i -g vercel
-vercel
-```
-
-#### Netlify
-```bash
-npm run build
-# Arraste a pasta dist/ para netlify.com/drop
-```
-
-#### GitHub Pages
-```bash
-npm run build
-gh-pages -d dist
-```
-
-### Checklist Pré-Deploy
-
-- [ ] Atualizar links do Hotmart e Instagram
-- [ ] Revisar todos os textos e preços
-- [ ] Testar em mobile e desktop
-- [ ] Validar imagens e assets
-- [ ] Configurar domínio customizado
-- [ ] Adicionar Google Analytics (opcional)
-
----
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Siga os passos:
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
+3. **Produção**
+   ```bash
+   npm run build
+   ```
 
 ---
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 📞 Contato
-
-**Teacher Kilane**  
-Instagram: [@_easyenglishnow](https://www.instagram.com/_easyenglishnow/)
+Este projeto é de uso exclusivo da marca **Easy English Now - Teacher Kilane**. Todos os direitos reservados.
 
 ---
 
 <div align="center">
-  <p>Feito com ❤️ para transformar o ensino de inglês</p>
-  <p>⭐ Se este projeto te ajudou, deixe uma estrela!</p>
+  Transformando vidas através do ensino de inglês.
 </div>
