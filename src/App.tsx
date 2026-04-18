@@ -370,7 +370,7 @@ export default function App() {
               </span>
 
               <h1 data-reveal="up" style={revealStyle(90)}>
-                {t.hero.title}
+                <span className="text-gradient">{t.hero.title}</span>
                 <span className="hero-word-wrap">
                   {" "}
                   <span className="hero-word">{t.words[activeWord]}</span>
@@ -383,7 +383,7 @@ export default function App() {
               </p>
 
               <div className="hero-actions" data-reveal="up" style={revealStyle(270)}>
-                <ActionButton className="button-link--pulse" onClick={() => setCurrentPage("contact")}>
+                <ActionButton className="button-link--pulse floating-element" onClick={() => setCurrentPage("contact")}>
                   {t.hero.ctaStart}
                 </ActionButton>
                 <ActionButton
@@ -466,13 +466,24 @@ export default function App() {
         <section className="section" data-tone="warm">
           <div className="container proof-layout">
             <div className="proof-media">
-              <div className="proof-frame" data-reveal="left">
-                <img src="/assets/foto-4-dobra.png" alt="Teacher Kilane" loading="lazy" />
+              <div className="proof-collage" data-reveal="left">
+                <div className="collage-item collage-item--1">
+                  <img src="/kilane-photos/Kilane%20filha.jpg" alt="Kilane e sua filha" loading="lazy" />
+                </div>
+                <div className="collage-item collage-item--2">
+                  <img src="/kilane-photos/kilane-c%C3%A3o.jpg" alt="Kilane e seu pet" loading="lazy" />
+                </div>
+                <div className="collage-item collage-item--3">
+                  <img src="/kilane-photos/podcast.jpg" alt="Teacher Kilane no Podcast" loading="lazy" />
+                </div>
+                <div className="collage-item collage-item--4">
+                  <img src="/kilane-photos/famila.jpg" alt="Kilane e sua família" loading="lazy" />
+                </div>
               </div>
               <div className="proof-badges" data-reveal="up" style={revealStyle(120)}>
-                <span>reels</span>
-                <span>carrosséis</span>
-                <span>stories</span>
+                <span>método natural</span>
+                <span>fale agora</span>
+                <span>liberdade</span>
               </div>
             </div>
 
