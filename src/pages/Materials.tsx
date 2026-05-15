@@ -1,5 +1,5 @@
 import { ArrowLeft, Search, X } from "lucide-react";
-import { useState, type CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useTranslation } from "../contexts/LanguageContext";
 
@@ -56,7 +56,7 @@ export default function Materials({ onBack }: MaterialsProps) {
   const [selectedCategory, setSelectedCategory] = useState<MaterialCategory>("todos");
   const [activeMaterial, setActiveMaterial] = useState<MaterialCardData | null>(null);
 
-  useScrollReveal([searchTerm, selectedCategory, language]);
+  useScrollReveal([language]);
 
   const materialsData: MaterialCardData[] = t.materials.items.map((item, index) => ({
     ...item,
@@ -67,6 +67,13 @@ export default function Materials({ onBack }: MaterialsProps) {
     ][index],
     category: ["basico", "intermediario", "avancado"][index] as Exclude<MaterialCategory, "todos">
   }));
+
+  // Reset search and category when language changes
+  useEffect(() => {
+    setSearchTerm("");
+    setSelectedCategory("todos");
+    setActiveMaterial(null);
+  }, [language]);
 
   const normalizedSearch = searchTerm.trim().toLowerCase();
 
@@ -87,6 +94,32 @@ export default function Materials({ onBack }: MaterialsProps) {
 
   return (
     <div className="materials-page">
+      <div className="container">
+        <button
+          onClick={onBack}
+          className="back-button"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            marginBottom: "32px",
+            marginTop: "32px",
+            background: "none",
+            border: "none",
+            color: "var(--blue)",
+            fontSize: "1rem",
+            fontWeight: "600",
+            cursor: "pointer",
+            transition: "transform 0.2s ease",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(-4px)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
+        >
+          <ArrowLeft size={20} />
+          {t.materials.back}
+        </button>
+      </div>
+      
       <header className="materials-header">
         <div className="container">
           <h1 data-reveal="up" style={revealStyle(80)}>
@@ -115,7 +148,7 @@ export default function Materials({ onBack }: MaterialsProps) {
           <div className="category-filters" data-reveal="up" style={revealStyle(100)}>
             {Object.entries(t.materials.categories).map(([value, label]) => (
               <button
-                key={value}
+                key={`${value}-${language}`}
                 className={selectedCategory === value ? "active" : ""}
                 onClick={() => setSelectedCategory(value as MaterialCategory)}
                 type="button"
@@ -137,7 +170,7 @@ export default function Materials({ onBack }: MaterialsProps) {
             <div className="library-grid">
               {filteredMaterials.map((material, index) => (
                 <LibraryCard 
-                  key={material.id} 
+                  key={`${material.id}-${language}`}
                   material={material} 
                   delay={index * 90} 
                   onClick={setActiveMaterial}
@@ -150,7 +183,7 @@ export default function Materials({ onBack }: MaterialsProps) {
       </div>
 
       {activeMaterial && (
-        <div className="modal-overlay" onClick={() => setActiveMaterial(null)}>
+        <div className="modal-overlay" onClick={() => setActiveMaterial(null)} key={`modal-${language}`}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header-mobile">
               <button className="modal-close" onClick={() => setActiveMaterial(null)}>
@@ -169,31 +202,15 @@ export default function Materials({ onBack }: MaterialsProps) {
                 <h2>{activeMaterial.title}</h2>
                 <div className="modal-badge">{activeMaterial.badge}</div>
                 <p>{activeMaterial.description}</p>
-                {activeMaterial.id === 1 && (
+                {activeMaterial.cta && (
                   <a 
-                    href="https://hotmart.com/pt-br/marketplace/produtos/easy-english-now-beginner/U102785184A?sck=HOTMART_MEM_CA" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="button-link button-link--pulse"
-                    style={{ marginTop: '20px' }}
-                  >
-                    <span>{activeMaterial.cta}</span>
-                  </a>
-                )}
-                {activeMaterial.id === 2 && (
-                  <a 
-                    href="https://hotmart.com/pt-br/marketplace/produtos/ingles-para-viagens-fale-com-seguranca-em-qualquer-pais/G105107385P?sck=HOTMART_MEM_CA" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="button-link button-link--pulse"
-                    style={{ marginTop: '20px' }}
-                  >
-                    <span>{activeMaterial.cta}</span>
-                  </a>
-                )}
-                {activeMaterial.id === 3 && (
-                  <a 
-                    href="https://hotmart.com/pt-br/marketplace/produtos/ingles-para-negocios-fale-com-seguranca-no-ambiente-profissional/E105107802L?sck=HOTMART_MEM_CA" 
+                    href={
+                      activeMaterial.id === 1 
+                        ? "https://hotmart.com/pt-br/marketplace/produtos/easy-english-now-beginner/U102785184A?sck=HOTMART_MEM_CA"
+                        : activeMaterial.id === 2
+                        ? "https://hotmart.com/pt-br/marketplace/produtos/ingles-para-viagens-fale-com-seguranca-em-qualquer-pais/G105107385P?sck=HOTMART_MEM_CA"
+                        : "https://hotmart.com/pt-br/marketplace/produtos/ingles-para-negocios-fale-com-seguranca-no-ambiente-profissional/E105107802L?sck=HOTMART_MEM_CA"
+                    }
                     target="_blank" 
                     rel="noreferrer"
                     className="button-link button-link--pulse"

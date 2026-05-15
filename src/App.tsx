@@ -16,18 +16,10 @@ import { useScrollReveal } from "./hooks/useScrollReveal";
 import { useTranslation } from "./contexts/LanguageContext";
 import type { Language } from "./constants/translations";
 import {
-  heroSignals,
-  painPoints,
-  processSteps,
-  proofCards,
-  faqItems,
-  teacherPoints,
-  heroPanels,
-  type HeroSignal,
-  type FeatureCardData,
-  type ProofCardData,
-  type FaqItemData,
-  type HeroPanelData,
+  painPointIcons,
+  processStepIcons,
+  proofCardConfig,
+  heroPanelConfig,
 } from "./constants/siteData";
 
 // Número ofuscado para dificultar scrapers (351936680657)
@@ -133,9 +125,9 @@ function HeroPanel({ icon: Icon, kicker, title, description, items, accent, dela
 }
 
 function HeroPreview() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   return (
-    <div className="hero-visual">
+    <div className="hero-visual" key={`hero-visual-${language}`}>
       <div className="story-stage" data-reveal="right">
         <span className="story-sticker story-sticker--left">{t.ticker[0]}</span>
         <span className="story-sticker story-sticker--right">{t.ticker[2]}</span>
@@ -149,9 +141,18 @@ function HeroPreview() {
       </div>
 
       <div className="hero-panels">
-        {heroPanels.map((panel, index) => (
-          <HeroPanel key={panel.title} {...panel} delay={120 + index * 100} />
-        ))}
+        {t.heroPanels.map((panel, index) => {
+          const config = heroPanelConfig[index];
+          return (
+            <HeroPanel 
+              key={`${panel.title}-${language}`} 
+              icon={config.icon}
+              accent={config.accent}
+              {...panel}
+              delay={120 + index * 100} 
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -304,6 +305,10 @@ export default function App() {
   useScrollReveal([currentPage, language]);
 
   useEffect(() => {
+    setActiveWord(0);
+  }, [language]);
+
+  useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
@@ -315,7 +320,7 @@ export default function App() {
       setActiveWord((current) => (current + 1) % t.words.length);
     }, 2200);
     return () => window.clearInterval(intervalId);
-  }, [t.words.length]);
+  }, [t.words.length, language]);
 
   useEffect(() => {
     if (currentPage !== "home") {
@@ -398,7 +403,7 @@ export default function App() {
               <div className="signal-grid">
                 {t.signals.map((signal, index) => (
                   <MetricCard
-                    key={signal.label}
+                    key={`${signal.label}-${language}`}
                     value={signal.value}
                     label={signal.label}
                     delay={260 + index * 80}
@@ -411,10 +416,10 @@ export default function App() {
           </div>
         </section>
 
-        <section className="ticker" aria-hidden="true">
+        <section className="ticker" aria-hidden="true" key={`ticker-${language}`}>
           <div className="ticker__track">
             {tickerLoop.map((item, index) => (
-              <span className="ticker__item" key={`${item}-${index}`}>
+              <span className="ticker__item" key={`${item}-${index}-${language}`}>
                 <CirclePlay aria-hidden="true" size={15} />
                 {item}
               </span>
@@ -432,8 +437,8 @@ export default function App() {
             <div className="card-grid">
               {t.pain.items.map((item, index) => (
                 <FeatureCard
-                  key={item.title}
-                  icon={painPoints[index].icon}
+                  key={`${item.title}-${language}`}
+                  icon={painPointIcons[index]}
                   {...item}
                   delay={index * 80}
                 />
@@ -452,8 +457,8 @@ export default function App() {
             <div className="card-grid card-grid--steps">
               {t.process.items.map((item, index) => (
                 <FeatureCard
-                  key={item.title}
-                  icon={processSteps[index].icon}
+                  key={`${item.title}-${language}`}
+                  icon={processStepIcons[index]}
                   {...item}
                   tone="step"
                   delay={index * 100}
@@ -496,9 +501,9 @@ export default function App() {
               <div className="proof-grid">
                 {t.proof.items.map((item, index) => (
                   <ProofCard
-                    key={item.title}
-                    icon={proofCards[index].icon}
-                    tone={proofCards[index].tone}
+                    key={`${item.title}-${language}`}
+                    icon={proofCardConfig[index].icon}
+                    tone={proofCardConfig[index].tone}
                     {...item}
                     delay={index * 100}
                   />
@@ -523,7 +528,7 @@ export default function App() {
                 <p>{t.teacher.description}</p>
                 <ul className="teacher-points">
                   {t.teacher.points.map((item) => (
-                    <li key={item.label}>
+                    <li key={`${item.label}-${language}`}>
                       <CheckCircle2 aria-hidden="true" size={18} />
                       <span>{item.label}</span>
                     </li>
@@ -555,8 +560,8 @@ export default function App() {
               <aside className="offer-side">
                 <h3>{t.offer.benefitsTitle}</h3>
                 <ul className="offer-side__list">
-                  {t.offer.benefits.map((benefit) => (
-                    <li key={benefit}>{benefit}</li>
+                  {t.offer.benefits.map((benefit, index) => (
+                    <li key={`${benefit}-${language}-${index}`}>{benefit}</li>
                   ))}
                 </ul>
               </aside>
@@ -574,7 +579,7 @@ export default function App() {
             <div className="faq-list">
               {t.faq.items.map((item, index) => (
                 <FaqCard
-                  key={item.question}
+                  key={`${item.question}-${language}`}
                   id={`faq-item-${index}`}
                   item={item}
                   open={openFaq === index}

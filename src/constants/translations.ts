@@ -22,6 +22,18 @@ export const translations = {
       { value: "97%", label: "satisfação" },
       { value: "100%", label: "garantia total" },
     ],
+    heroPanels: [
+      {
+        kicker: "@_easyenglishnow",
+        title: "Mais de 1.000 alunos já transformaram seu inglês",
+        items: ["Aprenda do zero ao avançado", "Resultados em semanas", "Acesso vitalício garantido"],
+      },
+      {
+        kicker: "Checkout oficial",
+        title: "Garantia incondicional de 7 dias",
+        description: "Não gostou? Devolvemos 100% do seu dinheiro. Sem perguntas. Risco zero.",
+      },
+    ],
     pain: {
       label: "🔥 Chega de sofrer",
       title: "Cansado de métodos que só complicam sua vida?",
@@ -224,6 +236,18 @@ export const translations = {
       { value: "+1,000", label: "transformed students" },
       { value: "97%", label: "satisfaction rate" },
       { value: "100%", label: "7-day guarantee" },
+    ],
+    heroPanels: [
+      {
+        kicker: "@_easyenglishnow",
+        title: "More than 1,000 students have already transformed their English",
+        items: ["Learn from zero to advanced", "Results in weeks", "Lifetime access guaranteed"],
+      },
+      {
+        kicker: "Official checkout",
+        title: "Unconditional 7-day guarantee",
+        description: "Don't like it? We return 100% of your money. No questions. Zero risk.",
+      },
     ],
     pain: {
       label: "🔥 Your pain",
@@ -428,6 +452,18 @@ export const translations = {
       { value: "97%", label: "tasa de satisfacción" },
       { value: "100%", label: "garantía de 7 días" },
     ],
+    heroPanels: [
+      {
+        kicker: "@_easyenglishnow",
+        title: "Más de 1.000 alumnos ya transformaron su inglés",
+        items: ["Aprende de cero a avanzado", "Resultados en semanas", "Acceso de por vida garantizado"],
+      },
+      {
+        kicker: "Checkout oficial",
+        title: "Garantía incondicional de 7 días",
+        description: "¿No te gustó? Devolvemos el 100% de tu dinero. Sin preguntas. Riesgo cero.",
+      },
+    ],
     pain: {
       label: "🔥 Tu dolor",
       title: "¿Ya intentaste aprender inglés y no lo lograste?",
@@ -630,6 +666,18 @@ export const translations = {
       { value: "+1.000", label: "студентов преобразились" },
       { value: "97%", label: "уровень удовлетворенности" },
       { value: "100%", label: "гарантия 7 дней" },
+    ],
+    heroPanels: [
+      {
+        kicker: "@_easyenglishnow",
+        title: "Более 1000 студентов уже преобразили свой английский",
+        items: ["Учитесь с нуля до продвинутого", "Результаты за недели", "Пожизненный доступ гарантирован"],
+      },
+      {
+        kicker: "Официальная оплата",
+        title: "Безусловная гарантия 7 дней",
+        description: "Не понравилось? Мы вернем 100% ваших денег. Без вопросов. Нулевой риск.",
+      },
     ],
     pain: {
       label: "🔥 Твоя боль",

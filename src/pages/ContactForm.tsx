@@ -69,6 +69,28 @@ export default function ContactForm({
   return (
     <div className="contact-page">
       <div className="container">
+        <button
+          onClick={onBack}
+          className="back-button"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            marginBottom: "32px",
+            background: "none",
+            border: "none",
+            color: "var(--blue)",
+            fontSize: "1rem",
+            fontWeight: "600",
+            cursor: "pointer",
+            transition: "transform 0.2s ease",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(-4px)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
+        >
+          <ArrowLeft size={20} />
+          {t.contact.back}
+        </button>
         <div className="contact-shell">
           <section
             className="contact-hero"
