@@ -206,10 +206,10 @@ export default function Materials({ onBack }: MaterialsProps) {
                   <a 
                     href={
                       activeMaterial.id === 1 
-                        ? "https://hotmart.com/pt-br/marketplace/produtos/easy-english-now-beginner/U102785184A?sck=HOTMART_MEM_CA"
+                        ? "https://pay.hotmart.com/Y105805722H?bid=1778884940218"
                         : activeMaterial.id === 2
-                        ? "https://hotmart.com/pt-br/marketplace/produtos/ingles-para-viagens-fale-com-seguranca-em-qualquer-pais/G105107385P?sck=HOTMART_MEM_CA"
-                        : "https://hotmart.com/pt-br/marketplace/produtos/ingles-para-negocios-fale-com-seguranca-no-ambiente-profissional/E105107802L?sck=HOTMART_MEM_CA"
+                        ? "https://pay.hotmart.com/U105700615K?bid=1778885032496"
+                        : "https://pay.hotmart.com/E105805825R?bid=1778884992332"
                     }
                     target="_blank" 
                     rel="noreferrer"
