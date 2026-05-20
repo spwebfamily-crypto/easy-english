@@ -30,6 +30,28 @@ const wPart4 = "657";
 const whatsappNumber = `${wPart1}${wPart2}${wPart3}${wPart4}`;
 const instagramLink = "https://www.instagram.com/_easyenglishnow/";
 
+type PageName = "home" | "materials" | "contact";
+
+const pagePaths: Record<PageName, string> = {
+  home: "/",
+  materials: "/materiais/",
+  contact: "/contato/",
+};
+
+function getPageFromPath(pathname: string): PageName {
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+
+  if (normalizedPath === "/materiais" || normalizedPath === "/materials") {
+    return "materials";
+  }
+
+  if (normalizedPath === "/contato" || normalizedPath === "/contact") {
+    return "contact";
+  }
+
+  return "home";
+}
+
 function revealStyle(delay = 0): CSSProperties {
   return { "--reveal-delay": `${delay}ms` };
 }
@@ -298,11 +320,30 @@ export default function App() {
   const { t, language } = useTranslation();
   const [activeWord, setActiveWord] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
-  const [currentPage, setCurrentPage] = useState<"home" | "materials" | "contact">("home");
+  const [currentPage, setCurrentPage] = useState<PageName>(() =>
+    getPageFromPath(window.location.pathname)
+  );
   const [showMobileBar, setShowMobileBar] = useState(false);
   const teacherCardRef = useRef<HTMLDivElement | null>(null);
 
   useScrollReveal([currentPage, language]);
+
+  const navigateToPage = (page: PageName) => {
+    const nextPath = pagePaths[page];
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({ page }, "", nextPath);
+    }
+    setCurrentPage(page);
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPage(getPageFromPath(window.location.pathname));
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   useEffect(() => {
     setActiveWord(0);
@@ -351,8 +392,7 @@ export default function App() {
   const tickerLoop = [...t.ticker, ...t.ticker];
 
   const handleBackToHome = () => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-    setCurrentPage("home");
+    navigateToPage("home");
   };
 
   const renderContent = () => {
@@ -388,12 +428,12 @@ export default function App() {
               </p>
 
               <div className="hero-actions" data-reveal="up" style={revealStyle(270)}>
-                <ActionButton className="button-link--pulse floating-element" onClick={() => setCurrentPage("contact")}>
+                <ActionButton className="button-link--pulse floating-element" onClick={() => navigateToPage("contact")}>
                   {t.hero.ctaStart}
                 </ActionButton>
                 <ActionButton
                   className="button-link--secondary"
-                  onClick={() => setCurrentPage("materials")}
+                  onClick={() => navigateToPage("materials")}
                   icon={BookOpenText}
                 >
                   {t.hero.ctaMaterials}
@@ -552,7 +592,7 @@ export default function App() {
                   description={t.offer.description}
                 />
                 <div className="hero-actions">
-                  <ActionButton className="button-link--pulse" onClick={() => setCurrentPage("contact")}>
+                  <ActionButton className="button-link--pulse" onClick={() => navigateToPage("contact")}>
                     {t.offer.cta}
                   </ActionButton>
                 </div>
@@ -616,7 +656,7 @@ export default function App() {
 
               <button
                 className="button-link button-link--small button-link--materials"
-                onClick={() => setCurrentPage("materials")}
+                onClick={() => navigateToPage("materials")}
                 type="button"
               >
                 <span>{t.topbar.materials}</span>
@@ -625,7 +665,7 @@ export default function App() {
 
               <ActionButton
                 className="button-link--small"
-                onClick={() => setCurrentPage("contact")}
+                onClick={() => navigateToPage("contact")}
                 icon={CheckCircle2}
               >
                 {t.topbar.cta}
@@ -660,7 +700,7 @@ export default function App() {
             <strong>{t.mobileBar.title}</strong>
             <span>{t.mobileBar.subtitle}</span>
           </div>
-          <ActionButton className="button-link--mobile" onClick={() => setCurrentPage("materials")}>
+          <ActionButton className="button-link--mobile" onClick={() => navigateToPage("materials")}>
             {t.mobileBar.cta}
           </ActionButton>
         </div>
